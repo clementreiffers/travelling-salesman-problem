@@ -2,6 +2,11 @@ import * as R from "ramda";
 
 const MAX_POPULATION = 10;
 
+// fonction qui nous sert pour le unfold
+const createItemForIterate = n => n == 0 ? false : [-n, n + 1];
+
+const unfoldPopulation = R.unfold(createItemForIterate, -MAX_POPULATION);
+
 const villes = [
     {x: 2, y: 5},
     {x: 6, y: 2},
@@ -14,6 +19,7 @@ let population = [];
 // on initialise ici chaque individus par une direction differente (ils vont demarrer au même point)
 const createIndiv = n => population.push(
         {
+            ways:0,
             0: {
                 nbrCities: 0,
                 dx: parseInt(Math.random() * 10),
@@ -26,16 +32,17 @@ const createIndiv = n => population.push(
     );
 
 
-// fonction qui nous sert pour le unfold
-const createItemForIterate = n => n == 0 ? false : [-n, n + 1]; // R.unfold(createItemForIterate, -MAX_POPULATION
-
-
 // on cree la population ici
-const createPopulation = R.forEach(createIndiv, R.unfold(createItemForIterate, -MAX_POPULATION));
+const createPopulation = R.forEach(createIndiv, unfoldPopulation);
 
+const mutateIndiv = dict => {
+    let ways = R.pluck("ways");
+    lastDict = dict[toString()]
+}
 
-console.log(population);
+console.log(population)
 
+// const mutate = R.forEach()
 
 /*
 * fonctions à implementer pour la selection naturelle :
