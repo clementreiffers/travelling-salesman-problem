@@ -7,6 +7,7 @@
   "author": "clementreiffers <reiffersclement@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dependencies": "^0.0.1",
     "ramda": "^0.28.0"
   }
 }

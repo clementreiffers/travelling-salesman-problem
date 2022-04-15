@@ -15,8 +15,11 @@ let population = [];
 const createIndiv = n => population.push(
         {
             0: {
+                nbrCities: 0,
                 dx: parseInt(Math.random() * 10),
                 dy: parseInt(Math.random() * 10),
+                x: 0,
+                y: 0
             }
 
         }
@@ -31,10 +34,9 @@ const createItemForIterate = n => n == 0 ? false : [-n, n + 1]; // R.unfold(crea
 const createPopulation = R.forEach(createIndiv, R.unfold(createItemForIterate, -MAX_POPULATION));
 
 
-console.log(population)
+console.log(population);
 
-// createPopulation(population);
-// console.log(population);
+
 /*
 * fonctions à implementer pour la selection naturelle :
 *   sort :
