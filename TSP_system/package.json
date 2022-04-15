@@ -1,0 +1,10 @@
+{
+  "name": "TSP_system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "create-react-app": "^5.0.1",
+    "react": "^18.0.0"
+  }
+}
