@@ -16,6 +16,17 @@ const villes = [
 
 let population = [];
 
+const addStepToIndiv = (indiv) => {
+    indiv[indiv.ways+1] = {
+        nbrCities: 0,
+        dx:indiv[indiv.ways].dx,
+        dy:indiv[indiv.ways].dy,
+        x:indiv[indiv.ways].x+indiv[indiv.ways].dx,
+        y:indiv[indiv.ways].y+indiv[indiv.ways].dy
+    }
+    indiv.ways++;
+}
+
 // on initialise ici chaque individus par une direction differente (ils vont demarrer au même point)
 const createIndiv = n => population.push(
         {
@@ -35,12 +46,10 @@ const createIndiv = n => population.push(
 // on cree la population ici
 const createPopulation = R.forEach(createIndiv, unfoldPopulation);
 
-const mutateIndiv = dict => {
-    let ways = R.pluck("ways");
-    lastDict = dict[toString()]
-}
+const mutateIndiv = () => R.forEach(addStepToIndiv, population)
 
-console.log(population)
+mutateIndiv();
+console.log(population);
 
 // const mutate = R.forEach()
 
