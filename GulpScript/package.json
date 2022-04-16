@@ -1,0 +1,10 @@
+{
+  "name": "GulpScript",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}

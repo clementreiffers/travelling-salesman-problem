@@ -2,9 +2,12 @@
   "name": "TSP_system",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "repository": "https://github.com/clementreiffers/TSP_system.git",
+  "author": "clementreiffers <reiffersclement@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "create-react-app": "^5.0.1",
-    "react": "^18.0.0"
+    "dependencies": "^0.0.1",
+    "ramda": "^0.28.0"
   }
 }
