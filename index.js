@@ -46,9 +46,9 @@ const createIndiv = n => population.push(
 // on cree la population ici
 const createPopulation = R.forEach(createIndiv, unfoldPopulation);
 
-const mutateIndiv = () => R.forEach(addStepToIndiv, population)
+const mutatatePopulation = () => R.forEach(addStepToIndiv, population)
 
-mutateIndiv();
+mutatatePopulation();
 console.log(population);
 
 // const mutate = R.forEach()
