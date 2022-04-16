@@ -32,8 +32,8 @@ const checkIfSomeonePassThroughCity = (indiv, city) => {
 
 const addStepToIndiv = (indiv) => {
     indiv[indiv.ways+1] = {
-        dx:indiv[indiv.ways].dx,
-        dy:indiv[indiv.ways].dy,
+        dx:Math.random() < 0.5 ? -parseInt(Math.random()*10) : parseInt(Math.random()*10),
+        dy:Math.random() < 0.5 ? -parseInt(Math.random()*10) : parseInt(Math.random()*10),
         x:indiv[indiv.ways].x+indiv[indiv.ways].dx,
         y:indiv[indiv.ways].y+indiv[indiv.ways].dy
     }
@@ -66,8 +66,8 @@ const mutatatePopulation = () => R.forEach(addStepToIndiv, population);
 // the tail is always the best speciemen
 const sortPopulationByCities = R.sortBy(R.prop("nbrCities"));
 
-mutatatePopulation();
-mutatatePopulation();
+for(let i = 0; i<10 ; i++)
+    mutatatePopulation();
 
 console.log(sortPopulationByCities(population));
 
