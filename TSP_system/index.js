@@ -7,7 +7,7 @@ const MAX_POPULATION = 100;
 let population = [];
 
 // fonction qui nous sert pour le unfold
-const createItemForIterate = n => n == 0 ? false : [-n, n + 1];
+const createItemForIterate = n => n === 0 ? false : [-n, n + 1];
 
 // unfold c'est l'inverse d'un reduce, on cree ici une liste d'element a partir d'un chiffre
 const unfoldPopulation = R.unfold(createItemForIterate, -MAX_POPULATION);
