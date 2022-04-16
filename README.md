@@ -4,11 +4,17 @@
 
 Travelling Salesman Problem system, made in Javascript with ramdajs.
 
+## How it works
+
+I am a placeholder.
+
 ## Installation
 
 I am a placeholder
 
 ## Method
+
+Order of operations :
 
 - create individuals
 - sort individuals from worst to best
