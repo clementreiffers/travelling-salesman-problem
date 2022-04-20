@@ -46,18 +46,34 @@ console.log(calculateScores([1, 2, 3, 4]));
 // console.log(createPopulation(population));
 
 
-const getCrossoverTab = (table, index, crossoverNumberElement) => {
-    return R.slice(index, index + crossoverNumberElement, table);
+// const getCrossoverTab = (table, index, crossoverNumberElement) => {
+//     return R.slice(index, index + crossoverNumberElement, table);
+// }
+//
+// const getRandomInt = (maxValue) => {
+//     return Math.floor(Math.random() * maxValue);
+// }
+//
+// const doCrossover = (individual1, individual2, crossoverIndex) => {
+//
+//     return R.concat(individual1, getCrossoverTab(individual2, crossoverIndex, crossoverValue));
+// }
+//
+// console.log(doCrossover([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [30, 31, 32, 33, 34, 35, 36, 37, 38, 39], getRandomInt(10), crossoverValue))
+
+const doCrossover = (individual1, individual2, index) => {
+    return individual1[index] = individual2[index];
 }
 
-const getRandomInt = (maxValue) => {
-    return Math.floor(Math.random() * maxValue);
+const getRandomInt = (maxValue) => Math.floor(Math.random() * maxValue);
+
+const swipeCities = (value1, value2) => {
+    const temp = value1;
+    value1 = value2;
+    value2 = temp;
 }
 
-const doCrossover = (individual1, individual2, crossoverIndex) => {
-
-    return R.concat(individual1, getCrossoverTab(individual2, crossoverIndex, crossoverValue));
+const swape = (array, index1, index2)=>{
+    R.move(index2,index1, array);
+    R.move(index1,index2);
 }
-
-console.log(doCrossover([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [30, 31, 32, 33, 34, 35, 36, 37, 38, 39], getRandomInt(10), crossoverValue))
-
