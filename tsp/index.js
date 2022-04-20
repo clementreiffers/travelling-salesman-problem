@@ -100,27 +100,22 @@ console.log(calculateScores([1, 2, 3, 4]));
 // console.log(doMutation(parent1, parent2, getRandomIndex(parent1)))
 // console.log(getMutated(getRandomIndex(parent1),parent1))
 
-// const parent1 = [8, 4, 2, 5, 1, 6, 3, 7];
-// const parent2 = [1, 2, 3, 4, 5, 6, 7, 8];
-const parent1 = [1, 1, 1, 1, 2];
-const parent2 = [2, 2, 2, 2, 1];
+const parent1 = [1, 2, 3, 4, 5, 6, 7, 8];
+const parent2 = [8, 4, 2, 5, 1, 6, 3, 7];
+
+// const parent1 = [1, 1, 1, 1, 2];
+// const parent2 = [2, 2, 2, 2, 1];
 
 /*
 * Parent 2 city is mutated into parent 1 to create offspring.
 */
 
-const doMutation = (parent1, parent2, mutationIndex) => {
-    return mutate(parent2[mutationIndex], mutationIndex, parent1);
-}
+const doMutation = (parent1, parent2, mutationIndex) => mutate(R.nth(mutationIndex,parent2), mutationIndex, parent1);
 
-const getRandomValue = (maxValue) => Math.floor((Math.random() * 10) % maxValue);
+const getRandomIndex = () => Math.floor((Math.random() * MAX_CITIES) % maxValue);
 
 const mutate = (value, index, parent1) => R.move(R.indexOf(value, parent1), index, parent1);
 
-const crossover = (parent1, parent2) => {
-    return doMutation(parent1, parent2, getRandomValue(parent1.length));
-}
+const crossover = (parent1, parent2) => doMutation(parent1, parent2, getRandomIndex(parent2.length));
 
 console.log(crossover(parent1, parent2));
-
-// const crossover = R.when(isMutating, doMutation);
