@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "p5": "^1.4.1",
+    "ramda": "^0.28.0"
+  }
+}

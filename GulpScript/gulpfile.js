@@ -10,7 +10,7 @@ const watcher = async () => {
 };
 
 const start = async () => {
-    myProcess = spawn('node', ['../TSP_system/index.js'], {stdio: 'inherit'});
+    myProcess = spawn('node', ['../tsp_old/index.js'], {stdio: 'inherit'});
 };
 
 const stop = async () => {
