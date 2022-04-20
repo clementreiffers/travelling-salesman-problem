@@ -7,6 +7,8 @@ const MAX_POPULATION = 10;
 const cities = {};
 const population = [];
 
+const crossoverValue = 1 / 4;
+
 const createCity = (number) => cities[number] = {x: parseInt(Math.random() * 10), y: parseInt(Math.random() * 10)};
 
 // fonction qui nous sert pour le unfold
@@ -20,7 +22,7 @@ const shuffle = R.sort(() => Math.random() - 0.5);
 const createIndiv = () => population.push({order: shuffle(unfoldPopulation), score: ""});
 const unfoldPopulation = R.unfold(createItemForIterate, -MAX_POPULATION);
 
-const vectorNorm = (city1, city2) => Math.sqrt(Math.pow(city1.x-city2.x, 2) + Math.pow(city1.y-city2.y, 2));
+const vectorNorm = (city1, city2) => Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
 // const
 
 const createPopulation = R.append(R.forEach(createIndiv, unfoldCities));
@@ -41,3 +43,19 @@ const calculateScores = (array) => {
 console.log(calculateScores([1, 2, 3, 4]));
 
 // console.log(createPopulation(population));
+
+
+const getCrossoVerTab = (table, index, crossoverValue) => {
+    return R.slice(index, index + crossoverValue * table.length, table);
+}
+
+const getRandomInt = (maxValue) => {
+    return Math.floor(Math.random() * maxValue);
+}
+
+console.log(getCrossoVerTab([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], getRandomInt(12), crossoverValue))
+
+
+// const doCrossover = (individual) => {
+//
+// }
