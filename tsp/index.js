@@ -6,8 +6,9 @@ const MAX_POPULATION = 10;
 
 const cities = {};
 const population = [];
+const offspring = [];
 
-const crossoverValue = 1 / 4;
+const crossoverNumberCity = 3;
 
 const createCity = (number) => cities[number] = {x: parseInt(Math.random() * 10), y: parseInt(Math.random() * 10)};
 
@@ -45,17 +46,18 @@ console.log(calculateScores([1, 2, 3, 4]));
 // console.log(createPopulation(population));
 
 
-const getCrossoVerTab = (table, index, crossoverValue) => {
-    return R.slice(index, index + crossoverValue * table.length, table);
+const getCrossoverTab = (table, index, crossoverNumberElement) => {
+    return R.slice(index, index + crossoverNumberElement, table);
 }
 
 const getRandomInt = (maxValue) => {
     return Math.floor(Math.random() * maxValue);
 }
 
-console.log(getCrossoVerTab([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], getRandomInt(12), crossoverValue))
+const doCrossover = (individual1, individual2, crossoverIndex) => {
 
+    return R.concat(individual1, getCrossoverTab(individual2, crossoverIndex, crossoverValue));
+}
 
-// const doCrossover = (individual) => {
-//
-// }
+console.log(doCrossover([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [30, 31, 32, 33, 34, 35, 36, 37, 38, 39], getRandomInt(10), crossoverValue))
+
