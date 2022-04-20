@@ -73,7 +73,24 @@ const swipeCities = (value1, value2) => {
     value2 = temp;
 }
 
-const swape = (array, index1, index2)=>{
-    R.move(index2,index1, array);
-    R.move(index1,index2);
-}
+// const swap = (array, index1, index2)=>{
+//     array = R.move(index1,index2, array);
+//     array = R.move(index2-1,index1, array);
+//     console.log(array)
+// }
+//
+// console.log(swap([1,2,3,4,5],0,4))
+//
+// const swap = (array, index1, index2) => {
+//     return R.pipe(R.move(index1, index2, array), R.move(index2 - 1, index1, array))
+// }
+//
+// console.log(swap([1, 2, 3, 4, 5], 0, 4))
+
+
+const swap = (idx1, idx2) => R.pipe(
+    R.move(idx1, idx2),
+    R.move(idx2 - 1, idx1)
+);
+
+console.log(swap(0, 2) ([1, 2, 3, 4, 5, 6, 7, 8]))
