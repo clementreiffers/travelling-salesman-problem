@@ -7,37 +7,55 @@ const MAX_POPULATION = 10;
 const cities = {};
 const population = [];
 
-const createCity = (number) => cities[number] = {x: parseInt(Math.random() * 10), y: parseInt(Math.random() * 10)};
+const createCity = (number) => cities[number] = {
+    x: parseInt(Math.random() * 10),
+    y: parseInt(Math.random() * 10),
+    value: 1
+};
 
-// fonction qui nous sert pour le unfold
-const createItemForIterate = n => n === 0 ? false : [-n, n + 1];
+const shuffleList = R.sort(() => Math.random() - 0.5);
 
-// unfold c'est l'inverse d'un reduce, on cree ici une liste d'element a partir d'un chiffre
-const unfoldCities = R.unfold(createItemForIterate, -MAX_CITIES);
+const createIndiv = () => population.push({
+    order: shuffleList(R.times(R.identity, MAX_POPULATION)),
+    score: ""
+});
 
-const shuffle = R.sort(() => Math.random() - 0.5);
-
-const createIndiv = () => population.push({order: shuffle(unfoldPopulation), score: ""});
-const unfoldPopulation = R.unfold(createItemForIterate, -MAX_POPULATION);
-
-const vectorNorm = (city1, city2) => Math.sqrt(Math.pow(city1.x-city2.x, 2) + Math.pow(city1.y-city2.y, 2));
-// const
-
-const createPopulation = R.append(R.forEach(createIndiv, unfoldCities));
 
 // a revoir
-const createCities = R.forEach(createCity, unfoldCities);
+const createPopulation = R.append(R.times(createIndiv, MAX_POPULATION));
 
+// a revoir
+const createCities = R.pipe(R.times(createCity, MAX_CITIES));
 
-const calculateScores = (array) => {
-    let score = 0;
-    for (let i in array) {
-        if (Number(i) + 1 < array.length)
-            score += vectorNorm(cities[R.nth(i, array)], cities[R.nth(Number(i) + 1, array)]);
-    }
-    return score;
+const isLessThanMaxDistanceRequired = (acc, v) => acc.dist < 250;
+
+const distance = (city1, city2) => Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
+
+const initCalculationsForScore = (acc, v) => {
+    acc.isFirstCity = false;
+    acc.previousCityNumber = v;
+    return acc;
 }
 
-console.log(calculateScores([1, 2, 3, 4]));
+const proceedCalculationsForScore = (acc, v) => {
+    acc.dist += distance(R.nth(v, cities), acc.city)
+    acc.score += R.nth(v, cities).value;
+    acc.city = R.nth(acc.previousCityNumber, cities);
+    acc.previousCityNumber = v;
+    return acc;
+}
 
-// console.log(createPopulation(population));
+const calculateScoresAutre = R.reduceWhile(
+    isLessThanMaxDistanceRequired,
+    (acc, v) => {
+        if (R.not(acc.isFirstCity)) {
+            acc = proceedCalculationsForScore(acc, v);
+        }
+        else {
+            acc = initCalculationsForScore(acc, v);
+        }
+        return acc;
+    }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, cities), isFirstCity: true}
+);
+
+console.log(calculateScoresAutre([1, 9, 3, 4]));
