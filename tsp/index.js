@@ -10,109 +10,70 @@ const offspring = [];
 
 const crossoverNumberCity = 3;
 
-const createCity = (number) => cities[number] = {x: parseInt(Math.random() * 10), y: parseInt(Math.random() * 10)};
+const createCity = (number) => cities[number] = {
+    x: parseInt(Math.random() * 10),
+    y: parseInt(Math.random() * 10),
+    value: 1
+};
 
-// fonction qui nous sert pour le unfold
-const createItemForIterate = n => n === 0 ? false : [-n, n + 1];
+const shuffleList = R.sort(() => Math.random() - 0.5);
 
-// unfold c'est l'inverse d'un reduce, on cree ici une liste d'element a partir d'un chiffre
-const unfoldCities = R.unfold(createItemForIterate, -MAX_CITIES);
-
-const shuffle = R.sort(() => Math.random() - 0.5);
-
-const createIndiv = () => population.push({order: shuffle(unfoldPopulation), score: ""});
-const unfoldPopulation = R.unfold(createItemForIterate, -MAX_POPULATION);
-
-const vectorNorm = (city1, city2) => Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
-// const
-
-const createPopulation = R.append(R.forEach(createIndiv, unfoldCities));
+const createIndiv = () => population.push({
+    order: shuffleList(R.times(R.identity, MAX_POPULATION)),
+    score: ""
+});
 
 // a revoir
-const createCities = R.forEach(createCity, unfoldCities);
+const createPopulation = R.append(R.times(createIndiv, MAX_POPULATION));
 
+// a revoir
+const createCities = R.pipe(R.times(createCity, MAX_CITIES));
 
-const calculateScores = (array) => {
-    let score = 0;
-    for (let i in array) {
-        if (Number(i) + 1 < array.length)
-            score += vectorNorm(cities[R.nth(i, array)], cities[R.nth(Number(i) + 1, array)]);
-    }
-    return score;
+const isLessThanMaxDistanceRequired = (acc, v) => acc.dist < 250;
+
+const distance = (city1, city2) => Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
+
+const initCalculationsForScore = (acc, v) => {
+    acc.isFirstCity = false;
+    acc.previousCityNumber = v;
+    return acc;
 }
 
-console.log(calculateScores([1, 2, 3, 4]));
+const proceedCalculationsForScore = (acc, v) => {
+    acc.dist += distance(R.nth(v, cities), acc.city)
+    acc.score += R.nth(v, cities).value;
+    acc.city = R.nth(acc.previousCityNumber, cities);
+    acc.previousCityNumber = v;
+    return acc;
+}
 
-// console.log(createPopulation(population));
+const calculateScores = R.reduceWhile(
+    isLessThanMaxDistanceRequired,
+    (acc, v) => {
+        if (R.not(acc.isFirstCity)) {
+            acc = proceedCalculationsForScore(acc, v);
+        } else {
+            acc = initCalculationsForScore(acc, v);
+        }
+        return acc;
+    }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, cities), isFirstCity: true}
+);
 
-
-// const getCrossoverTab = (table, index, crossoverNumberElement) => {
-//     return R.slice(index, index + crossoverNumberElement, table);
-// }
-//
-// const getRandomInt = (maxValue) => {
-//     return Math.floor(Math.random() * maxValue);
-// }
-//
-// const doCrossover = (individual1, individual2, crossoverIndex) => {
-//
-//     return R.concat(individual1, getCrossoverTab(individual2, crossoverIndex, crossoverValue));
-// }
-//
-// console.log(doCrossover([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [30, 31, 32, 33, 34, 35, 36, 37, 38, 39], getRandomInt(10), crossoverValue))
-
-// const doCrossover = (individual1, individual2, index) => {
-//     return individual1[index] = individual2[index];
-// }
-//
-// const getRandomInt = (maxValue) => Math.floor(Math.random() * maxValue);
-//
-// const swipeCities = (value1, value2) => {
-//     const temp = value1;
-//     value1 = value2;
-//     value2 = temp;
-// }
-
-// const swap = (array, index1, index2)=>{
-//     array = R.move(index1,index2, array);
-//     array = R.move(index2-1,index1, array);
-//     console.log(array)
-// }
-//
-// console.log(swap([1,2,3,4,5],0,4))
-//
-// const swap = (array, index1, index2) => {
-//     return R.pipe(R.move(index1, index2, array), R.move(index2 - 1, index1, array))
-// }
-//
-// console.log(swap([1, 2, 3, 4, 5], 0, 4))
-
-
-// const swap = (idx1, idx2) => R.pipe(
-//     R.move(idx1, idx2),
-//     R.move(idx2 - 1, idx1)
-// );
-//
-// console.log(swap(0, 2) ([1, 2, 3, 4, 5, 6, 7, 8]))
-
-// console.log(getRandomIndex([1, 2, 3, 4, 5, 6, 7, 8]))
-// console.log(mutate(4, 0, [1, 2, 3, 4, 5, 6, 7, 8]))
-// console.log(doMutation(parent1, parent2, getRandomIndex(parent1)))
-// console.log(getMutated(getRandomIndex(parent1),parent1))
-
-const parent1 = [1, 2, 3, 4, 5, 6, 7, 8];
-const parent2 = [8, 4, 2, 5, 1, 6, 3, 7];
-
-// const parent1 = [1, 1, 1, 1, 2];
-// const parent2 = [2, 2, 2, 2, 1];
+console.log(calculateScores([1, 9, 3, 4]));
 
 /*
 * Parent 2 city is mutated into parent 1 to create offspring.
 */
 
-const doMutation = (parent1, parent2, mutationIndex) => mutate(R.nth(mutationIndex,parent2), mutationIndex, parent1);
+// const parent1 = [1, 1, 1, 1, 2];
+// const parent2 = [2, 2, 2, 2, 1];
 
-const getRandomIndex = () => Math.floor((Math.random() * MAX_CITIES) % maxValue);
+const parent1 = [1, 2, 3, 4, 5, 6, 7, 8];
+const parent2 = [8, 4, 2, 5, 1, 6, 3, 7];
+
+const doMutation = (parent1, parent2, mutationIndex) => mutate(R.nth(mutationIndex, parent2), mutationIndex, parent1);
+
+const getRandomIndex = (maxValue) => Math.floor((Math.random() * 10) % maxValue);
 
 const mutate = (value, index, parent1) => R.move(R.indexOf(value, parent1), index, parent1);
 
