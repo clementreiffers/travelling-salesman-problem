@@ -61,17 +61,17 @@ console.log(calculateScores([1, 2, 3, 4]));
 //
 // console.log(doCrossover([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [30, 31, 32, 33, 34, 35, 36, 37, 38, 39], getRandomInt(10), crossoverValue))
 
-const doCrossover = (individual1, individual2, index) => {
-    return individual1[index] = individual2[index];
-}
-
-const getRandomInt = (maxValue) => Math.floor(Math.random() * maxValue);
-
-const swipeCities = (value1, value2) => {
-    const temp = value1;
-    value1 = value2;
-    value2 = temp;
-}
+// const doCrossover = (individual1, individual2, index) => {
+//     return individual1[index] = individual2[index];
+// }
+//
+// const getRandomInt = (maxValue) => Math.floor(Math.random() * maxValue);
+//
+// const swipeCities = (value1, value2) => {
+//     const temp = value1;
+//     value1 = value2;
+//     value2 = temp;
+// }
 
 // const swap = (array, index1, index2)=>{
 //     array = R.move(index1,index2, array);
@@ -88,9 +88,33 @@ const swipeCities = (value1, value2) => {
 // console.log(swap([1, 2, 3, 4, 5], 0, 4))
 
 
-const swap = (idx1, idx2) => R.pipe(
-    R.move(idx1, idx2),
-    R.move(idx2 - 1, idx1)
-);
+// const swap = (idx1, idx2) => R.pipe(
+//     R.move(idx1, idx2),
+//     R.move(idx2 - 1, idx1)
+// );
+//
+// console.log(swap(0, 2) ([1, 2, 3, 4, 5, 6, 7, 8]))
 
-console.log(swap(0, 2) ([1, 2, 3, 4, 5, 6, 7, 8]))
+// console.log(getRandomIndex([1, 2, 3, 4, 5, 6, 7, 8]))
+// console.log(mutate(4, 0, [1, 2, 3, 4, 5, 6, 7, 8]))
+// console.log(doMutation(parent1, parent2, getRandomIndex(parent1)))
+// console.log(getMutated(getRandomIndex(parent1),parent1))
+
+const parent1 = [1, 2, 3, 4, 5, 6, 7, 8];
+const parent2 = [10, 11, 12, 13, 14, 15, 16, 17];
+
+
+const getRandomIndex = (array) => Math.floor((Math.random() * 10) % array.length);
+
+const getMutated = (randomIndex, array) => getRandomIndex(array);
+
+const mutate = (value, index, array) => R.move(R.indexOf(value, array), index, array);
+
+const doMutation = (parent1, parent2, index) => {
+    return mutate(getMutated(parent1, index), index, parent2);
+}
+
+console.log(doMutation(parent1, parent2, getRandomIndex(parent.length)))
+
+
+// const crossover = R.when(isMutating, doMutation);
