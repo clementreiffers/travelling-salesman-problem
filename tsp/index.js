@@ -5,7 +5,7 @@ const MAX_CITIES = 10;
 const MAX_POPULATION = 10;
 
 const cities = {};
-const population = [];
+let population = [];
 const offspring = [];
 
 const crossoverNumberCity = 3;
@@ -76,10 +76,10 @@ const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
         R.sortBy(R.prop(temporaryProp)),
     );
 
-const sortListByTimes_ = sortListByTimesWithTemporaryName_('score');
+const sortListByScores = sortListByTimesWithTemporaryName_('score');
 
-console.log(sortListByTimes_(population));
-
+population = sortListByScores(population);
+console.log(population);
 
 // console.log(population);
 /*
