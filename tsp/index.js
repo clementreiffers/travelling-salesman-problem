@@ -4,17 +4,11 @@ import * as R from "ramda";
 const MAX_CITIES = 10;
 const MAX_POPULATION = 10;
 
-const cities = {};
+let map = {};
 let population = [];
 const offspring = [];
 
 const crossoverNumberCity = 3;
-
-const createCity = (number) => cities[number] = {
-    x: parseInt(Math.random() * 10),
-    y: parseInt(Math.random() * 10),
-    value: 1
-};
 
 const shuffleList = R.sort(() => Math.random() - 0.5);
 
@@ -24,10 +18,25 @@ const createIndiv = () => population.push({
 });
 
 // a revoir
-const createPopulation = R.append(R.times(createIndiv, MAX_POPULATION));
+// const createPopulation = R.append(R.times(createIndiv, MAX_POPULATION));
 
-// a revoir
-const createCities = R.pipe(R.times(createCity, MAX_CITIES));
+/*
+ * GENERATION OF THE MAP
+ */
+
+const appendCityToMap = map => city => R.assoc(city, createCity(), map);
+
+const getRandomValue = () => Math.floor(Math.random() * 10);
+
+const createCity = R.applySpec({
+    x: getRandomValue,
+    y: getRandomValue,
+    value: getRandomValue
+});
+
+const createMap = (map) => R.times(appendCityToMap(map), MAX_CITIES);
+
+console.log(createMap(map));
 
 const isLessThanMaxDistanceRequired = acc => R.gt(250, acc.dist);
 
@@ -40,9 +49,9 @@ const initCalculationsForScore = (acc, v) => {
 }
 
 const proceedCalculationsForScore = (acc, v) => {
-    acc.dist += distance(R.nth(v, cities), acc.city)
-    acc.score += R.nth(v, cities).value;
-    acc.city = R.nth(acc.previousCityNumber, cities);
+    acc.dist += distance(R.nth(v, map), acc.city)
+    acc.score += R.nth(v, map).value;
+    acc.city = R.nth(acc.previousCityNumber, map);
     acc.previousCityNumber = v;
     return acc;
 }
@@ -56,7 +65,7 @@ const calculateScoreOfIndiv = R.pipe(
             else acc = initCalculationsForScore(acc, v);
 
             return acc;
-        }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, cities), isFirstCity: true}
+        }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, map), isFirstCity: true}
     ),
     R.dissoc("previousCityNumber"),
     R.dissoc("city"),
@@ -77,8 +86,8 @@ const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
 
 const sortListByScores = sortListByTimesWithTemporaryName_('score');
 
-population = sortListByScores(population);
-console.log(population);
+// population = sortListByScores(population);
+// console.log(population);
 
 // console.log(population);
 /*
