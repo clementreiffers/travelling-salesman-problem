@@ -1,40 +1,19 @@
 import * as R from "ramda";
 // import * as p5 from "p5";
+import {createPop, setMaxPopulation} from "./App/Genetics/initPopulation.js";
 
 const MAX_CITIES = 10;
-const MAX_POPULATION = 10;
+setMaxPopulation(10);
 
 let map = {};
-let population = [];
+let population = createPop([]);
+
+console.log(population)
+
 const offspring = [];
 
 const crossoverNumberCity = 3;
 
-
-/*
- * GENERATION OF POPULATION
- */
-
-const shuffleList = R.sort(() => Math.random() - 0.5);
-
-const createRandomCityPath = () => shuffleList(R.times(R.identity, MAX_POPULATION));
-
-
-const createRandomIndiv = R.applySpec({
-    order : createRandomCityPath,
-    score: null
-});
-
-const appendIndivToPopulation = population => indiv => R.append(indiv, population)
-
-const appendRandomIndivToPopulation = population => n => R.nth(0, appendIndivToPopulation(population)(createRandomIndiv()))
-
-const createPop = (pop) => R.times(appendRandomIndivToPopulation(pop), MAX_POPULATION);
-
-
-population = createPop(population);
-
-console.log(population)
 
 /*
  * GENERATION OF THE MAP
