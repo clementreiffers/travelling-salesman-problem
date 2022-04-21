@@ -29,7 +29,7 @@ const createPopulation = R.append(R.times(createIndiv, MAX_POPULATION));
 // a revoir
 const createCities = R.pipe(R.times(createCity, MAX_CITIES));
 
-const isLessThanMaxDistanceRequired = (acc, v) => acc.dist < 250;
+const isLessThanMaxDistanceRequired = acc => R.gt(250, acc.dist);
 
 const distance = (city1, city2) => Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
 
@@ -47,20 +47,41 @@ const proceedCalculationsForScore = (acc, v) => {
     return acc;
 }
 
-const calculateScores = R.reduceWhile(
-    isLessThanMaxDistanceRequired,
-    (acc, v) => {
-        if (R.not(acc.isFirstCity)) {
-            acc = proceedCalculationsForScore(acc, v);
-        } else {
-            acc = initCalculationsForScore(acc, v);
-        }
-        return acc;
-    }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, cities), isFirstCity: true}
+const calculateScoreOfIndiv = R.pipe(
+    R.reduceWhile(
+        isLessThanMaxDistanceRequired,
+        (acc, v) => {
+            if (R.not(acc.isFirstCity)) {
+                acc = proceedCalculationsForScore(acc, v);
+            } else {
+                acc = initCalculationsForScore(acc, v);
+            }
+            return acc;
+        }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, cities), isFirstCity: true}
+    ),
+    R.dissoc("previousCityNumber"),
+    R.dissoc("city"),
+    R.dissoc("isFirstCity")
 );
 
-console.log(calculateScores([1, 9, 3, 4]));
+const calculateScoresFromArrays = R.pipe(R.prop('order'), calculateScoreOfIndiv);
 
+
+const assocTimeInSeconds = (temporaryProp) =>
+    R.converge(R.assoc(temporaryProp), [calculateScoresFromArrays, R.identity]);
+
+const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
+    R.pipe(
+        R.map(assocTimeInSeconds(temporaryProp)),
+        R.sortBy(R.prop(temporaryProp)),
+    );
+
+const sortListByTimes_ = sortListByTimesWithTemporaryName_('score');
+
+console.log(sortListByTimes_(population));
+
+
+// console.log(population);
 /*
 * Parent 2 city is mutated into parent 1 to create offspring.
 */
@@ -79,7 +100,7 @@ const mutate = (value, index, parent1) => R.move(R.indexOf(value, parent1), inde
 
 const crossover = (parent1, parent2) => doMutation(parent1, parent2, getRandomIndex(parent2.length));
 
-console.log(crossover(parent1, parent2));
+// console.log(crossover(parent1, parent2));
 
 
 const createOffsprings = (offspringNumber, parentList) => {

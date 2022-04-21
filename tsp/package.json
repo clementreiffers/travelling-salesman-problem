@@ -4,5 +4,8 @@
     "dependencies": "^0.0.1",
     "p5": "^1.4.1",
     "ramda": "^0.28.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
