@@ -29,9 +29,16 @@ const initCalculationsForScore = (acc, v) => {
     return acc;
 }
 
+const getResidualCity = city => R.nth(R.keys(city), city)
+
+
 const proceedCalculationsForScore = (acc, v) => {
-    acc.dist += distance(R.nth(v, map), acc.city)
-    acc.score += R.nth(v, map).value;
+
+    acc.dist += distance(
+        getResidualCity(R.nth(v, map)),
+        getResidualCity(acc.city))
+
+    acc.score += getResidualCity(R.nth(v, map)).value;
     acc.city = R.nth(acc.previousCityNumber, map);
     acc.previousCityNumber = v;
     return acc;
