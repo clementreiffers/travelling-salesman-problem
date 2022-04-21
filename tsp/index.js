@@ -1,41 +1,22 @@
 import * as R from "ramda";
 // import * as p5 from "p5";
 import {createPop, setMaxPopulation} from "./App/Genetics/initPopulation.js";
+import {createMap, setMaxCities} from "./App/Genetics/initMap.js";
 
 const MAX_CITIES = 10;
-setMaxPopulation(10);
+const MAX_POPULATION = 10;
 
-let map = {};
+setMaxPopulation(MAX_POPULATION);
+setMaxCities(MAX_CITIES);
+
+let map = createMap({});
 let population = createPop([]);
 
-console.log(population)
+console.log(map);
 
 const offspring = [];
 
 const crossoverNumberCity = 3;
-
-
-/*
- * GENERATION OF THE MAP
- */
-
-const appendCityToMap = map => city => R.assoc(city, createCity(), map);
-
-const getRandomValue = () => Math.floor(Math.random() * 10);
-
-const createCity = R.applySpec({
-    x: getRandomValue,
-    y: getRandomValue,
-    value: getRandomValue
-});
-
-const createMap = (map) => R.times(appendCityToMap(map), MAX_CITIES);
-
-// console.log(createMap(map));
-
-/*
- * **************************
- */
 
 
 const isLessThanMaxDistanceRequired = acc => R.gt(250, acc.dist);
@@ -86,8 +67,8 @@ const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
 
 const sortListByScores = sortListByTimesWithTemporaryName_('score');
 
-// population = sortListByScores(population);
-// console.log(population);
+population = sortListByScores(population);
+console.log(population);
 
 // console.log(population);
 /*
