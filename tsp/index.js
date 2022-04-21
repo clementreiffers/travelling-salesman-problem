@@ -10,15 +10,31 @@ const offspring = [];
 
 const crossoverNumberCity = 3;
 
+
+/*
+ * GENERATION OF POPULATION
+ */
+
 const shuffleList = R.sort(() => Math.random() - 0.5);
 
-const createIndiv = () => population.push({
-    order: shuffleList(R.times(R.identity, MAX_POPULATION)),
-    score: ""
+const createRandomCityPath = () => shuffleList(R.times(R.identity, MAX_POPULATION));
+
+
+const createRandomIndiv = R.applySpec({
+    order : createRandomCityPath,
+    score: null
 });
 
-// a revoir
-// const createPopulation = R.append(R.times(createIndiv, MAX_POPULATION));
+const appendIndivToPopulation = population => indiv => R.append(indiv, population)
+
+const appendRandomIndivToPopulation = population => n => R.nth(0, appendIndivToPopulation(population)(createRandomIndiv()))
+
+const createPop = (pop) => R.times(appendRandomIndivToPopulation(pop), MAX_POPULATION);
+
+
+population = createPop(population);
+
+console.log(population)
 
 /*
  * GENERATION OF THE MAP
@@ -36,7 +52,12 @@ const createCity = R.applySpec({
 
 const createMap = (map) => R.times(appendCityToMap(map), MAX_CITIES);
 
-console.log(createMap(map));
+// console.log(createMap(map));
+
+/*
+ * **************************
+ */
+
 
 const isLessThanMaxDistanceRequired = acc => R.gt(250, acc.dist);
 
