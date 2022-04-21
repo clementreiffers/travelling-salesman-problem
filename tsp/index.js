@@ -51,11 +51,10 @@ const calculateScoreOfIndiv = R.pipe(
     R.reduceWhile(
         isLessThanMaxDistanceRequired,
         (acc, v) => {
-            if (R.not(acc.isFirstCity)) {
+            if (R.not(acc.isFirstCity))
                 acc = proceedCalculationsForScore(acc, v);
-            } else {
-                acc = initCalculationsForScore(acc, v);
-            }
+            else acc = initCalculationsForScore(acc, v);
+
             return acc;
         }, {dist: 0, score: 0, previousCityNumber: 0, city: R.nth(0, cities), isFirstCity: true}
     ),
