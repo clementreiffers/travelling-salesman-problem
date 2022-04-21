@@ -80,3 +80,11 @@ const mutate = (value, index, parent1) => R.move(R.indexOf(value, parent1), inde
 const crossover = (parent1, parent2) => doMutation(parent1, parent2, getRandomIndex(parent2.length));
 
 console.log(crossover(parent1, parent2));
+
+
+const createOffsprings = (offspringNumber, parentList) => {
+    return R.times(crossover(parentList[i * 2], parentList[i * 2 + 1]), offspringNumber);
+}
+
+// console.log(createOffsprings(1, parent1, parent2))
+
