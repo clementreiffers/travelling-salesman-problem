@@ -1,8 +1,6 @@
 import * as R from "ramda";
 
-let MAX_CITIES = 0;
-
-const appendCityToMap_ = map => city => R.assoc(city, createCity_(), map);
+const appendCityToMap_ = (map) => (city) => R.assoc(city, createCity_(), map);
 
 const getRandomValue_ = () => Math.floor(Math.random() * 10);
 
@@ -12,8 +10,6 @@ const createCity_ = R.applySpec({
     value: getRandomValue_
 });
 
-const createMap = (map) => R.times(appendCityToMap_(map), MAX_CITIES);
+const createMap = (maxCities) => (map) => R.times(appendCityToMap_(map), maxCities);
 
-const setMaxCities = maxCities => MAX_CITIES = maxCities;
-
-export {createMap, setMaxCities}
+export {createMap}
