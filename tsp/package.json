@@ -3,7 +3,8 @@
   "dependencies": {
     "dependencies": "^0.0.1",
     "p5": "^1.4.1",
-    "ramda": "^0.28.0"
+    "ramda": "^0.28.0",
+    "xo": "^0.48.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
