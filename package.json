@@ -1,0 +1,23 @@
+{
+  "name": "tsp_system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clementreiffers/TSP_system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clementreiffers/TSP_system/issues"
+  },
+  "homepage": "https://github.com/clementreiffers/TSP_system#readme",
+  "dependencies": {
+    "mocha": "^9.2.2",
+    "xo": "^0.48.0"
+  }
+}
