@@ -3,24 +3,24 @@
  */
 import * as R from "ramda";
 
-let MAX_POPULATION = 0;
-
 const shuffleList_ = R.sort(() => Math.random() - 0.5);
 
-const createRandomCityPath_ = () => shuffleList_(R.times(R.identity, MAX_POPULATION));
+const createRandomCityPath_ = (maxCities) =>
+  shuffleList_(R.times(R.identity, maxCities));
 
+const createRandomIndiv_ = (maxCity) =>
+  R.applySpec({
+    order: () => createRandomCityPath_(maxCity),
+    score: null,
+  });
 
-const createRandomIndiv_ = R.applySpec({
-    order : createRandomCityPath_,
-    score: null
-});
+const appendIndivToPopulation_ = (population) => (indiv) =>
+  R.append(indiv, population);
 
-const appendIndivToPopulation_ = population => indiv => R.append(indiv, population)
+const appendRandomIndivToPopulation_ = (population) => (maxCity) => (n) =>
+  appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
 
-const appendRandomIndivToPopulation_ = population => n => R.nth(0, appendIndivToPopulation_(population)(createRandomIndiv_()))
+const createPop = (maxPop) => (maxCity) =>
+  R.times(appendRandomIndivToPopulation_([])(maxCity), maxPop);
 
-const createPop = pop => R.times(appendRandomIndivToPopulation_(pop), MAX_POPULATION);
-
-const setMaxPopulation = maxPop => MAX_POPULATION = maxPop;
-
-export {createPop, setMaxPopulation};
+export { createPop };

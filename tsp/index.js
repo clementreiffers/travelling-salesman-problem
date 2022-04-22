@@ -1,18 +1,17 @@
 import * as R from "ramda";
 // import * as p5 from "p5";
-import { createPop, setMaxPopulation } from "./App/Genetics/initPopulation.js";
+import { createPop } from "./App/Genetics/initPopulation.js";
 import { createMap } from "./App/Genetics/initMap.js";
 
-const MAX_CITIES = 100;
-const MAX_POPULATION = 100;
+const MAX_CITIES = 1;
+const MAX_POPULATION = 2;
 
-setMaxPopulation(MAX_POPULATION);
 const mapper = createMap(MAX_CITIES);
 
 let map = mapper({});
-let population = createPop([]);
+let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-console.log(map);
+console.log(population);
 
 const offspring = [];
 
@@ -92,8 +91,8 @@ const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
 
 const sortListByScores = sortListByTimesWithTemporaryName_("score");
 
-population = sortListByScores(population);
-console.log(population);
+// population = sortListByScores(population);
+// console.log(population);
 
 // console.log(population);
 /*
