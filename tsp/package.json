@@ -2,11 +2,28 @@
   "type": "module",
   "dependencies": {
     "dependencies": "^0.0.1",
-    "p5": "^1.4.1",
-    "ramda": "^0.28.0",
-    "xo": "^0.48.0"
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "xo": "^0.48.0"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true,
+    "rules": {
+      "unicorn/no-fn-reference-in-iterator": 0,
+      "unicorn/no-array-callback-reference": 0,
+      "unicorn/no-array-method-this-argument": 0,
+      "unicorn/no-reduce": 0
+    },
+    "envs": [
+      "mocha"
+    ]
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "singleQuote": true,
+    "trailingComma": "none"
   }
 }

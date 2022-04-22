@@ -1,7 +1,8 @@
-import * as R from "ramda";
+import * as R from 'ramda';
 
-import { createPop, setMaxPopulation } from "./App/Genetics/initPopulation.js";
-import { createMap, setMaxCities } from "./App/Genetics/initMap.js";
+import {createPop, setMaxPopulation} from './App/Genetics/initPopulation.js';
+import {createMap, setMaxCities} from './App/Genetics/initMap.js';
+import {importCityFromIndividual} from './App/Genetics/crossoverMutation.js';
 
 const MAX_CITIES = 10;
 const MAX_POPULATION = 10;
@@ -58,16 +59,16 @@ const calculateScoreOfIndiv = R.pipe(
       score: 0,
       previousCityNumber: 0,
       city: R.nth(0, map),
-      isFirstCity: true,
+      isFirstCity: true
     }
   ),
-  R.dissoc("previousCityNumber"),
-  R.dissoc("city"),
-  R.dissoc("isFirstCity")
+  R.dissoc('previousCityNumber'),
+  R.dissoc('city'),
+  R.dissoc('isFirstCity')
 );
 
 const calculateScoresFromArrays = R.pipe(
-  R.prop("order"),
+  R.prop('order'),
   calculateScoreOfIndiv
 );
 
@@ -80,47 +81,11 @@ const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
     R.sortBy(R.prop(temporaryProp))
   );
 
-const sortListByScores = sortListByTimesWithTemporaryName_("score");
+const sortListByScores = sortListByTimesWithTemporaryName_('score');
 
 population = sortListByScores(population);
 console.log(population);
 
-//------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 
-const getRandomValue = (maxValue) => Math.floor(Math.random() * (maxValue + 1)); //Math.random return 0 to 1 (0 included but not 1).
-
-// Mutation :
-
-// const isMutating = R.pipe(Math.random, R.lt(1 - mutateProbability));
-const shouldMutate = (mutateProb) => () => Math.random() > 1 - mutateProb;
-
-//Ajouter un converge ici pour simplifier ???
-const moveCityFromIndivudal = (individual) =>
-  R.move(
-    getRandomValue(individual.length),
-    getRandomValue(individual.length),
-    individual
-  );
-
-const mutate = R.when(shouldMutate, moveCityFromIndivudal);
-
-const mutatePopulation = R.map(mutate);
-
-console.log(
-  mutatePopulation([
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [60, 70, 80, 90, 100, 110, 120, 130, 140],
-  ])
-);
-
-// Crossover :
-
-const isCrossovering = () => Math.random() > 1 - crossoverProbability;
-
-const importCityFromNeighbour = (population) => ;
-
-const crossover = () => R.when(isCrossovering, importCityFromOther)
-
-// // Repair :
-//
-// const repair = ()=> R.pipe(R.uniq, R.difference())
+console.log(importCityFromIndividual([1, 2, 3, 4, 5, 6, 7]));
