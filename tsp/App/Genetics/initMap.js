@@ -10,6 +10,6 @@ const createCity_ = R.applySpec({
     value: getRandomValue_
 });
 
-const createMap = (maxCities) => (map) => R.times(appendCityToMap_(map), maxCities);
+const createMap = (maxCities) => R.times(appendCityToMap_({}), maxCities);
 
 export {createMap}

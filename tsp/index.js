@@ -3,15 +3,12 @@ import * as R from "ramda";
 import { createPop } from "./App/Genetics/initPopulation.js";
 import { createMap } from "./App/Genetics/initMap.js";
 
-const MAX_CITIES = 1;
+const MAX_CITIES = 10;
 const MAX_POPULATION = 2;
 
-const mapper = createMap(MAX_CITIES);
+const map = createMap(MAX_CITIES);
+const population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-let map = mapper({});
-let population = createPop(MAX_POPULATION)(MAX_CITIES);
-
-console.log(population);
 
 const offspring = [];
 
