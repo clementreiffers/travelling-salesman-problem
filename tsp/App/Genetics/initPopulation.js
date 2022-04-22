@@ -15,7 +15,7 @@ const createRandomIndiv_ = (maxCity) =>
   });
 
 const appendIndivToPopulation_ = (population) => (indiv) =>
-  R.append(indiv, population);
+  R.nth(0, R.append(indiv, population));
 
 const appendRandomIndivToPopulation_ = (population) => (maxCity) => (n) =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());

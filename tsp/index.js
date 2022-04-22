@@ -6,9 +6,8 @@ import { createMap } from "./App/Genetics/initMap.js";
 const MAX_CITIES = 10;
 const MAX_POPULATION = 2;
 
-const map = createMap(MAX_CITIES);
-const population = createPop(MAX_POPULATION)(MAX_CITIES);
-
+let map = createMap(MAX_CITIES);
+let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
 const offspring = [];
 
@@ -88,8 +87,8 @@ const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
 
 const sortListByScores = sortListByTimesWithTemporaryName_("score");
 
-// population = sortListByScores(population);
-// console.log(population);
+population = sortListByScores(population);
+console.log(population);
 
 // console.log(population);
 /*
