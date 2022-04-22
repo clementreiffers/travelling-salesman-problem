@@ -2,7 +2,7 @@ import * as R from 'ramda';
 
 import {createPop, setMaxPopulation} from './App/Genetics/initPopulation.js';
 import {createMap, setMaxCities} from './App/Genetics/initMap.js';
-import {importCityFromIndividual} from './App/Genetics/crossoverMutation.js';
+import {importCityFromIndividual} from './App/Genetics/mutation.js';
 
 const MAX_CITIES = 10;
 const MAX_POPULATION = 10;
@@ -12,11 +12,6 @@ setMaxCities(MAX_CITIES);
 
 let map = createMap({});
 let population = createPop([]);
-
-const mutateProbability = 1; //0.2
-const crossoverProbability = 1; //0.2
-
-const naturalSelectionPercentParent = 0.6; // Check value
 
 console.log(map);
 
@@ -85,7 +80,3 @@ const sortListByScores = sortListByTimesWithTemporaryName_('score');
 
 population = sortListByScores(population);
 console.log(population);
-
-//---------------------------------------------------------------------------------------------------------------------------------------
-
-console.log(importCityFromIndividual([1, 2, 3, 4, 5, 6, 7]));
