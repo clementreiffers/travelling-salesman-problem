@@ -1,82 +1,19 @@
 import * as R from 'ramda';
 
-import {createPop, setMaxPopulation} from './App/Genetics/initPopulation.js';
-import {createMap, setMaxCities} from './App/Genetics/initMap.js';
-import {importCityFromIndividual} from './App/Genetics/mutation.js';
+import {createPop} from './App/Genetics/initPopulation.js';
+import {createMap} from './App/Genetics/initMap.js';
+import sortListByScores from './App/Genetics/scores.js';
+import {} from './App/Genetics/mutation.js';
+import {} from './App/Genetics/crossover.js';
+import {} from './App/Genetics/repair.js';
 
 const MAX_CITIES = 10;
-const MAX_POPULATION = 10;
+const MAX_POPULATION = 20;
 
-setMaxPopulation(MAX_POPULATION);
-setMaxCities(MAX_CITIES);
+let map = createMap(MAX_CITIES);
+let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-let map = createMap({});
-let population = createPop([]);
+const crossoverNumberCity = 3;
 
-console.log(map);
-
-const isLessThanMaxDistanceRequired = (acc) => R.gt(250, acc.dist);
-
-const distance = (city1, city2) =>
-  Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
-
-const initCalculationsForScore = (acc, v) => {
-  acc.isFirstCity = false;
-  acc.previousCityNumber = v;
-  return acc;
-};
-
-const getResidualCity = (city) => R.nth(R.keys(city), city);
-
-const proceedCalculationsForScore = (acc, v) => {
-  acc.dist += distance(
-    getResidualCity(R.nth(v, map)),
-    getResidualCity(acc.city)
-  );
-
-  acc.score += getResidualCity(R.nth(v, map)).value;
-  acc.city = R.nth(acc.previousCityNumber, map);
-  acc.previousCityNumber = v;
-  return acc;
-};
-
-const calculateScoreOfIndiv = R.pipe(
-  R.reduceWhile(
-    isLessThanMaxDistanceRequired,
-    (acc, v) => {
-      if (R.not(acc.isFirstCity)) acc = proceedCalculationsForScore(acc, v);
-      else acc = initCalculationsForScore(acc, v);
-
-      return acc;
-    },
-    {
-      dist: 0,
-      score: 0,
-      previousCityNumber: 0,
-      city: R.nth(0, map),
-      isFirstCity: true
-    }
-  ),
-  R.dissoc('previousCityNumber'),
-  R.dissoc('city'),
-  R.dissoc('isFirstCity')
-);
-
-const calculateScoresFromArrays = R.pipe(
-  R.prop('order'),
-  calculateScoreOfIndiv
-);
-
-const assocTimeInSeconds = (temporaryProp) =>
-  R.converge(R.assoc(temporaryProp), [calculateScoresFromArrays, R.identity]);
-
-const sortListByTimesWithTemporaryName_ = (temporaryProp) =>
-  R.pipe(
-    R.map(assocTimeInSeconds(temporaryProp)),
-    R.sortBy(R.prop(temporaryProp))
-  );
-
-const sortListByScores = sortListByTimesWithTemporaryName_('score');
-
-population = sortListByScores(population);
+population = sortListByScores(map)(population);
 console.log(population);
