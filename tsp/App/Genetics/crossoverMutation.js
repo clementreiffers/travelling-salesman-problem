@@ -17,9 +17,9 @@ const moveCityFromIndividual = R.converge(R.move, [
   R.identity
 ]);
 
-const mutate = R.when(shouldMutate, moveCityFromIndividual);
+const tryMutate = R.when(shouldMutate, moveCityFromIndividual);
 
-const mutatePopulation = R.map(mutate);
+const mutatePopulation = R.map(tryMutate);
 
 // console.log(
 //   mutatePopulation([
@@ -47,9 +47,18 @@ const importCityFromNeighbour = R.converge(R.move, [
 
 const concatParents = R.concat;
 
-const crossover = R.when(shouldCrossover, concatParents);
+const moveCityFromIndToInd = 
 
-const crossoverPopulation = R.map(crossover);
+const tryCrossover = R.when(shouldCrossover, moveCityFromIndToInd);
+
+const crossoverPopulation = R.map(tryCrossover);
+
+console.log(
+  crossoverPopulation([
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [60, 70, 80, 90, 100, 110, 120, 130, 140]
+  ])
+);
 
 // // Repair :
 //
