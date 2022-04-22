@@ -3,7 +3,7 @@ import * as R from 'ramda';
 import {createPop} from './App/Genetics/initPopulation.js';
 import {createMap} from './App/Genetics/initMap.js';
 import sortListByScores from './App/Genetics/scores.js';
-import {} from './App/Genetics/mutation.js';
+import {mutatePopulation} from './App/Genetics/mutation.js';
 import {} from './App/Genetics/crossover.js';
 import {} from './App/Genetics/repair.js';
 
