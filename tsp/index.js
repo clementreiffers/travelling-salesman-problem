@@ -12,8 +12,10 @@ setMaxCities(MAX_CITIES);
 let map = createMap({});
 let population = createPop([]);
 
-const mutateProbability = 1 / 5;
-const crossoverProbability = 1 / 5;
+const mutateProbability = 1; //0.2
+const crossoverProbability = 1; //0.2
+
+const naturalSelectionPercentParent = 0.6; // Check value
 
 console.log(map);
 
@@ -83,47 +85,16 @@ const sortListByScores = sortListByTimesWithTemporaryName_("score");
 population = sortListByScores(population);
 console.log(population);
 
-// // console.log(population);
-// /*
-//  * Parent 2 city is mutated into parent 1 to create offspring.
-//  */
-//
-// // const parent1 = [1, 1, 1, 1, 2];
-// // const parent2 = [2, 2, 2, 2, 1];
-//
-// const parent1 = [1, 2, 3, 4, 5, 6, 7, 8];
-// const parent2 = [8, 4, 2, 5, 1, 6, 3, 7];
-// // const parent = [[8, 4, 2, 5, 1, 6, 3, 7], [8, 4, 2, 5, 1, 6, 3, 7]];
-//
-// const doMutation = (parent1, parent2, mutationIndex) =>
-//   mutate(R.nth(mutationIndex, parent2), mutationIndex, parent1);
-//
-// const getRandomIndex = (maxValue) =>
-//   Math.floor((Math.random() * 10) % maxValue);
-//
-// const mutate = (value, index, parent1) =>
-//   R.move(R.indexOf(value, parent1), index, parent1);
-//
-// const crossover = (parent1, parent2) =>
-//   doMutation(parent1, parent2, getRandomIndex(parent2.length));
-//
-// console.log(crossover(parent1, parent2));
-// const crossover2 = (arrayTuples) => doMutation(arrayTuples[0], arrayTuples[1], 10)
-//
-// const createOffsprings = (offspringNumber, parentList) => {
-//     // return R.times(crossover(parentList[i * 2], parentList[i * 2 + 1]), offspringNumber);
-//     return R.pipe(R.splitEvery(2, parentList), R.map(crossover2, parentList));
-// }
-//
-// console.log(createOffsprings(1, parent))
-// console.log(createOffsprings(1, parent1, parent2))
+//------------------------------------------------------------------------------------------------------------
 
 const getRandomValue = (maxValue) => Math.floor(Math.random() * (maxValue + 1)); //Math.random return 0 to 1 (0 included but not 1).
 
 // Mutation :
 
-const isMutating = () => Math.random() > 1 - mutateProbability;
+// const isMutating = R.pipe(Math.random, R.lt(1 - mutateProbability));
+const shouldMutate = (mutateProb) => () => Math.random() > 1 - mutateProb;
 
+//Ajouter un converge ici pour simplifier ???
 const moveCityFromIndivudal = (individual) =>
   R.move(
     getRandomValue(individual.length),
@@ -131,18 +102,25 @@ const moveCityFromIndivudal = (individual) =>
     individual
   );
 
-const mutate = () => R.when(isMutating, moveCityFromIndivudal);
+const mutate = R.when(shouldMutate, moveCityFromIndivudal);
 
-console.log(mutate()([1, 2, 3, 4, 5, 6, 7]));
+const mutatePopulation = R.map(mutate);
 
-// const mutatePopulation = () => R.map(mutate(),)
+console.log(
+  mutatePopulation([
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [60, 70, 80, 90, 100, 110, 120, 130, 140],
+  ])
+);
 
 // Crossover :
 
 const isCrossovering = () => Math.random() > 1 - crossoverProbability;
 
-const importCityFromOther = (population) => ;
+const importCityFromNeighbour = (population) => ;
 
 const crossover = () => R.when(isCrossovering, importCityFromOther)
 
-// Repair :
+// // Repair :
+//
+// const repair = ()=> R.pipe(R.uniq, R.difference())
