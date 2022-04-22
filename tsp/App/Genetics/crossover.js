@@ -27,14 +27,24 @@ const moveCityFromArrToArr = console.log;
 
 const concatArrays = R.concat;
 
-const tryCrossover = R.when(shouldCrossover, concatArrays);
+const crossover = (parent1, parent2, index) => R.nth(index, parent2);
+
+const test = R.pipe(R.append, R.move);
+
+const tryCrossover = R.when(shouldCrossover, moveCityFromArrToArr);
 
 const crossoverPopulation = R.map(tryCrossover);
 // const crossoverPopulation = R.forEach(tryCrossover);
 
 crossoverPopulation([
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [60, 70, 80, 90, 100, 110, 120, 130, 140]
+  [8, 1, 6, 7, 4, 3, 9, 2, 5],
+  [61, 70, 80, 90, 100, 110, 120, 130, 140],
+  [62, 70, 80, 90, 100, 110, 120, 130, 140],
+  [63, 70, 80, 90, 100, 110, 120, 130, 140],
+  [64, 70, 80, 90, 100, 110, 120, 130, 140],
+  [65, 70, 80, 90, 100, 110, 120, 130, 140],
+  [66, 70, 80, 90, 100, 110, 120, 130, 140]
 ]);
 
 // export {importCityFromIndividual};
