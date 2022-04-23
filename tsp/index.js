@@ -20,7 +20,7 @@ const crossoverNumberCity = 3;
 
 console.log(population);
 
-const new_population = R.pipe(
+const next_gen = R.pipe(
   R.pluck('order'),
   mutatePopulation,
   crossOverPopulation,
