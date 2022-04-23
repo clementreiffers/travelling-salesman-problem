@@ -1,17 +1,16 @@
 /*
  * GENERATION OF POPULATION
  */
-import * as R from "ramda";
-
-const shuffleList_ = R.sort(() => Math.random() - 0.5);
+import * as R from 'ramda';
+import {shuffleList} from './commonFunctions.js';
 
 const createRandomCityPath_ = (maxCities) =>
-  shuffleList_(R.times(R.identity, maxCities));
+  shuffleList(R.times(R.identity, maxCities));
 
 const createRandomIndiv_ = (maxCity) =>
   R.applySpec({
     order: () => createRandomCityPath_(maxCity),
-    score: null,
+    score: null
   });
 
 const appendIndivToPopulation_ = (population) => (indiv) =>
@@ -23,4 +22,4 @@ const appendRandomIndivToPopulation_ = (population) => (maxCity) => (n) =>
 const createPop = (maxPop) => (maxCity) =>
   R.times(appendRandomIndivToPopulation_([])(maxCity), maxPop);
 
-export { createPop };
+export {createPop};

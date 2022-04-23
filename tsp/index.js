@@ -17,3 +17,5 @@ let population = createPop(MAX_POPULATION)(MAX_CITIES);
 const crossoverNumberCity = 3;
 
 population = sortListByScores(map)(population);
+
+console.log(population);
