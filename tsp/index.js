@@ -6,7 +6,7 @@ import sortListByScores from './App/Genetics/scores.js';
 import {mutatePopulation} from './App/Genetics/mutation.js';
 import {crossOverPopulation} from './App/Genetics/crossover.js';
 import {repairPopulation} from './App/Genetics/repair.js';
-import {} from './App/Genetics/commonFunctions.js';
+// import {} from './App/Genetics/commonFunctions.js';
 
 const MAX_CITIES = 10;
 const MAX_POPULATION = 20;
@@ -22,4 +22,11 @@ population = sortListByScores(map)(population);
 
 console.log(population);
 
-// console.log(R.pluck('order', population));
+const new_population = R.pipe(
+  R.pluck('order'),
+  mutatePopulation,
+  crossOverPopulation,
+  repairPopulation
+);
+
+console.log(new_population(population));
