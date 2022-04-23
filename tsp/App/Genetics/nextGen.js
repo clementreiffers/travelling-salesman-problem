@@ -2,11 +2,10 @@ import * as R from 'ramda';
 import {mutatePopulation} from './mutation.js';
 import {crossOverPopulation} from './crossover.js';
 import {repairPopulation} from './repair.js';
-import {createPopulationFromListOfOrder, immigration} from './population.js';
+import {createPop, createPopulationFromListOfOrder} from './population.js';
 import {sortListByDist} from './scores.js';
 
-const percentageDeleted = (population) =>
-  R.divide(100, R.multiply(R.length(population), 25));
+const percentageDeleted = (population) => 60 / 100;
 
 const indexMaxFromPercentageDeleted = (population) =>
   Math.round(R.multiply(percentageDeleted(population), R.length(population)));
@@ -27,7 +26,7 @@ const nextGeneration = (map) => (maxPop) => (maxCities) =>
     createPopulationFromListOfOrder,
     sortListByDist(map),
     killWeakPeople,
-    immigration(maxPop)(maxCities)
+    R.concat(createPop(maxPop)(maxCities))
   );
 
 export default nextGeneration;

@@ -23,9 +23,6 @@ const createPop = (maxPop) => (maxCity) =>
 const appendRandomIndivToPopulation = (maxCity) => (population) => (n) =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
 
-const immigration = (maxPop) => (maxCity) => (population) =>
-  R.times(appendRandomIndivToPopulation(maxCity)(population), maxPop);
-
 const createPopulationFromListOfOrder = R.map(createIndivFromOrder);
 
-export {createPop, createPopulationFromListOfOrder, immigration};
+export {createPop, createPopulationFromListOfOrder};
