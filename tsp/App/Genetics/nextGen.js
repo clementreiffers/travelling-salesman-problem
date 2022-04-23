@@ -5,17 +5,13 @@ import {repairPopulation} from './repair.js';
 import {createPop, createPopulationFromListOfOrder} from './population.js';
 import {sortListByDist} from './scores.js';
 
-const percentageDeleted = (population) => 60 / 100;
+const percentageDeleted = () => 10 / 100;
 
 const indexMaxFromPercentageDeleted = (population) =>
-  Math.round(R.multiply(percentageDeleted(population), R.length(population)));
+  Math.round(R.multiply(percentageDeleted(), R.length(population)));
 
 const killWeakPeople = (population) =>
-  R.slice(
-    indexMaxFromPercentageDeleted(population),
-    R.length(population),
-    population
-  );
+  R.slice(0, indexMaxFromPercentageDeleted(population), population);
 
 const nextGeneration = (map) => (maxPop) => (maxCities) =>
   R.pipe(
