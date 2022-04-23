@@ -13,12 +13,12 @@ const indexMaxFromPercentageDeleted = (population) =>
 const killWeakPeople = (population) =>
   R.slice(0, indexMaxFromPercentageDeleted(population), population);
 
-const killIndiv = (population) => (n) => R.drop(n, population);
+// Tconst killIndiv = (population) => (n) => R.drop(n, population);
+//
+// Tconst shouldIHaveThePermissionToKill = () =>
+//   R.pipe(Math.random, R.lt(1 - 1 / 10));
 
-const shouldIHaveThePermissionToKill = () =>
-  R.pipe(Math.random, R.lt(1 - 1 / 10));
-
-// const killRandomPeople = (population) =>
+// Tconst killRandomPeople = (population) =>
 //   R.last(
 //     R.times(R.when(shouldIHaveThePermissionToKill, killIndiv(population)), 3)
 //   );

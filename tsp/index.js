@@ -6,7 +6,7 @@ import {sortListByDist} from './App/Genetics/scores.js';
 
 const MAX_CITIES = 10;
 const MAX_POPULATION = 100;
-// const MAX_GEN = 10;
+// Tconst MAX_GEN = 10;
 
 const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
