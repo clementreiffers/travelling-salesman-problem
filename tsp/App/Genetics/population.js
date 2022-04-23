@@ -2,7 +2,7 @@
  * GENERATION OF POPULATION
  */
 import * as R from 'ramda';
-import {shuffleList} from './commonFunctions.js';
+import {shuffleList} from './common-functions.js';
 
 const createRandomCityPath_ = (maxCities) =>
   shuffleList(R.times(R.identity, maxCities));

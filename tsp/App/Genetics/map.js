@@ -1,6 +1,5 @@
 import * as R from 'ramda';
-import {getRandomValue} from './commonFunctions.js';
-import {max} from 'ramda';
+import {getRandomValue} from './common-functions.js';
 
 const appendCityToMap_ = (map) => (maxCities) => (city) =>
   R.assoc(city, createCity_(maxCities), map);

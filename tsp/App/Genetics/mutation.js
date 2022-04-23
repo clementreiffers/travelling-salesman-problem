@@ -1,9 +1,9 @@
 import * as R from 'ramda';
-import {getRandomIndex} from './commonFunctions.js';
+import {getRandomIndex} from './common-functions.js';
 
 // Mutation :
 
-const mutateProbability = 1 / 5; //0.2 mutation percent possibility
+const mutateProbability = 1 / 5; // 0.2 mutation percent possibility
 
 const shouldMutate = R.pipe(Math.random, R.lt(1 - mutateProbability));
 

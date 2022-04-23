@@ -6,7 +6,7 @@ import {
   getRandomIndex,
   getRandomValue,
   shuffleList
-} from '../App/Genetics/commonFunctions.js';
+} from '../App/Genetics/common-functions.js';
 
 describe('../App/Genetics/mutation.js', () => {
   describe('#mutatePopulation()', () => {
@@ -103,7 +103,7 @@ describe('../App/Genetics/repair.js', () => {
   });
 });
 
-describe('../App/Genetics/commonFunctions.js', () => {
+describe('../App/Genetics/common-functions.js', () => {
   describe('#getRandomIndex()', () => {
     it('Repair : ', () => {
       expect(getRandomIndex([1, 2, 3, 4, 5, 6, 7, 8, 9]))
