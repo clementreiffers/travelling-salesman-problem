@@ -27,4 +27,4 @@ const next_gen = R.pipe(
   repairPopulation
 );
 
-console.log(new_population(population));
+console.log(next_gen(population));
