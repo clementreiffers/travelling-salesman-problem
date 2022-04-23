@@ -8,4 +8,4 @@ const MAX_POPULATION = 10;
 let map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-console.log(nextGeneration(map)(population));
+console.log(nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population));

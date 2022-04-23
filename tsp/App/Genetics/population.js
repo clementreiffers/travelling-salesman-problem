@@ -12,17 +12,20 @@ const createRandomIndiv_ = (maxCity) =>
     order: () => createRandomCityPath_(maxCity)
   });
 
-const appendRandomIndivToPopulation_ = (population) => (maxCity) => (n) =>
-  appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
-
-const createPop = (maxPop) => (maxCity) =>
-  R.times(appendRandomIndivToPopulation_([])(maxCity), maxPop);
-
 const appendIndivToPopulation_ = (population) => (indiv) =>
   R.nth(0, R.append(indiv, population));
 
 const createIndivFromOrder = R.applySpec({order: R.identity});
 
+const createPop = (maxPop) => (maxCity) =>
+  R.times(appendRandomIndivToPopulation(maxCity)([]), maxPop);
+
+const appendRandomIndivToPopulation = (maxCity) => (population) => (n) =>
+  appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
+
+const immigration = (maxPop) => (maxCity) => (population) =>
+  R.times(appendRandomIndivToPopulation(maxCity)(population), maxPop);
+
 const createPopulationFromListOfOrder = R.map(createIndivFromOrder);
 
-export {createPop, createPopulationFromListOfOrder};
+export {createPop, createPopulationFromListOfOrder, immigration};
