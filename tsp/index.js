@@ -22,4 +22,11 @@ population = sortListByScores(map)(population);
 
 console.log(population);
 
-// console.log(R.pluck('order', population));
+const new_population = R.pipe(
+  R.pluck('order'),
+  mutatePopulation,
+  crossOverPopulation,
+  repairPopulation
+);
+
+console.log(new_population(population));
