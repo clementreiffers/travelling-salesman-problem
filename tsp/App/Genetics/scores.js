@@ -15,32 +15,44 @@ const initCalculationsForScore_ = (acc, v) => {
   return acc;
 };
 
-const proceedCalculationsForScore_ = (acc, v) => (map) => {
-  acc.dist += distance_(R.prop(v, map), acc.city);
-  acc.value += R.prop(v, map).value;
-  acc.city = R.prop(v, map);
-  acc.cityPassed += 1;
-  // R.applySpec({
-  //    dist:
-  //    score:
-  //    city:
-  // })
-  return acc;
-};
+const proceedCalculationsForScore_ = (acc, v) => (map) =>
+  setAcc(
+    R.add(R.prop('value', acc), R.prop('value', R.prop(v, map))),
+    R.add(R.prop('dist', acc), distance_(R.prop(v, map), acc.city)),
+    R.inc(R.prop('cityPassed', acc)),
+    R.prop('city', acc),
+    R.prop('nbrCityWanted', acc),
+    R.prop('isFirstCity', acc)
+  )();
+
+const setAcc = (value, dist, cityPassed, city, nbrCityWanted, isFirstCity) =>
+  R.pipe(
+    R.applySpec({
+      city: () => city,
+      value: () => value,
+      cityPassed: () => cityPassed,
+      dist: () => dist,
+      nbrCityWanted: () => nbrCityWanted,
+      isFirstCity: () => isFirstCity
+    })
+  );
 
 const calculateScoreOfIndiv_ = (m) =>
   R.pipe(
     R.reduceWhile(
-      isLessThanMaxDistanceRequired_,
+      R.T,
       (acc, v) => {
-        if (acc.cityPassed === acc.nbrCityWanted) {
-          acc.value = 0;
-          acc.dist = 0;
-          acc.cityPassed = 0;
-        }
-        if (R.not(acc.isFirstCity))
-          acc = proceedCalculationsForScore_(acc, v)(m);
-        else acc = initCalculationsForScore_(acc, v);
+        acc = R.ifElse(
+          () => R.equals(acc.cityPassed, acc.nbrCityWanted),
+          () => setAcc(0, 0, 0, acc.city, acc.nbrCityWanted, acc.isFirstCity)(),
+          () => acc
+        )();
+
+        acc = R.ifElse(
+          () => R.prop('isFirstCity', acc),
+          () => initCalculationsForScore_(acc, v),
+          () => proceedCalculationsForScore_(acc, v)(m)
+        )();
         return acc;
       },
       {

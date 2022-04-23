@@ -8,7 +8,7 @@ const appendCityToMap_ = (map) => (maxCities) => (city) =>
 const createCity_ = R.applySpec({
   x: getRandomValue,
   y: getRandomValue,
-  value: getRandomValue
+  value: () => 1
 });
 
 const createMap = (maxCities) =>
