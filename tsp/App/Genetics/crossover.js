@@ -7,7 +7,6 @@ const crossoverProbability = 1 / 5; //0.2 crossover percent possibility
 
 const shouldCrossover = R.pipe(Math.random, R.lt(1 - crossoverProbability));
 
-const magicCrossOver = (reference, target) => reference + target;
 const magicMapper = (acc, value) => [
   value,
   crossOver(acc, value, getRandomIndex(acc))
@@ -16,17 +15,33 @@ const magicMapper = (acc, value) => [
 const crossOver = (reference, target, index) =>
   R.update(index, R.nth(index, reference), target);
 
+const crossOverPopulation = (population) => {
+  return R.pipe(
+    R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
+    R.last
+  )(population);
+};
+
 const population = [
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [9, 8, 7, 6, 5, 4, 3, 2, 1],
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
   [9, 8, 7, 6, 5, 4, 3, 2, 1]
 ];
 
-console.log(
-  R.pipe(
-    R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
-    R.last
-  )(population)
-);
+console.log(crossOverPopulation(population));
+
+// console.log(
+//   R.pipe(
+//     R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
+//     R.last
+//   )(population)
+// );
+
+// const crossoverPopulation = R.pipe(
+//   R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
+//   R.last
+// )(population);
 
 // const shouldCrossover = (crossoverProb) => () =>
 //   Math.random() > 1 - crossoverProb;
@@ -66,4 +81,4 @@ console.log(
 //   [66, 70, 80, 90, 100, 110, 120, 130, 140]
 // ]);
 
-// export {importCityFromIndividual};
+// export {crossOverpopulation};
