@@ -23,4 +23,4 @@ const stop = async () => {
 const defaultRun = series(start, watcher);
 
 export default defaultRun;
-export {watcher, defaultRun};
+// export {watcher, defaultRun};

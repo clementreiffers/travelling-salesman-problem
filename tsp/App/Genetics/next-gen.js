@@ -35,6 +35,6 @@ const nextGeneration = (map) => (maxPop) => (maxCities) =>
     R.concat(createPop(maxPop)(maxCities))
   );
 
-// console.log(killRandomPeople([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+// Majuscule console.log(killRandomPeople([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
 export default nextGeneration;
