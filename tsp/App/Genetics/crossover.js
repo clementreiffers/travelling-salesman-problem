@@ -3,20 +3,30 @@ import {getRandomIndex} from './commonFunctions.js';
 
 //Crossover
 
-const crossoverProbability = 1; //0.2 crossover percent possibility
+const crossoverProbability = 1 / 5; //0.2 crossover percent possibility
 
 const shouldCrossover = R.pipe(Math.random, R.lt(1 - crossoverProbability));
 
-const digits = ['1223324', '2122131', '3321132', '4123312'];
 const magicCrossOver = (reference, target) => reference + target;
-const magicMapper = (acc, value) => [value, magicCrossOver(acc, value)];
+const magicMapper = (acc, value) => [
+  value,
+  crossOver(acc, value, getRandomIndex(acc))
+];
+
+const crossOver = (reference, target, index) =>
+  R.update(index, R.nth(index, reference), target);
+
+const population = [
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [9, 8, 7, 6, 5, 4, 3, 2, 1]
+];
 
 console.log(
   R.pipe(
     R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
     R.last
-  )(digits)
-); //=> ['01234', ['01', '012', '0123', '01234']]
+  )(population)
+);
 
 // const shouldCrossover = (crossoverProb) => () =>
 //   Math.random() > 1 - crossoverProb;
