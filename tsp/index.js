@@ -6,6 +6,7 @@ import sortListByScores from './App/Genetics/scores.js';
 import {mutatePopulation} from './App/Genetics/mutation.js';
 import {} from './App/Genetics/crossover.js';
 import {} from './App/Genetics/repair.js';
+import {} from './App/Genetics/commonFunctions.js';
 
 const MAX_CITIES = 10;
 const MAX_POPULATION = 20;
