@@ -5,7 +5,7 @@ import * as R from 'ramda';
 import {sortListByDist} from './App/Genetics/scores.js';
 
 const MAX_CITIES = 10;
-const MAX_POPULATION = 10;
+const MAX_POPULATION = 100;
 const MAX_GEN = 10;
 
 let map = createMap(MAX_CITIES);
