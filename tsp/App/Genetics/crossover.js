@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import {getRandomIndex} from './commonFunctions.js';
 
 //Crossover
-const crossoverProbability = 1 / 5;
+const crossoverProbability = 1;
 
 const shouldCrossOver = (proba) => R.pipe(Math.random, R.lt(1 - proba));
 
