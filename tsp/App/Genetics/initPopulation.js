@@ -9,8 +9,7 @@ const createRandomCityPath_ = (maxCities) =>
 
 const createRandomIndiv_ = (maxCity) =>
   R.applySpec({
-    order: () => createRandomCityPath_(maxCity),
-    score: null
+    order: () => createRandomCityPath_(maxCity)
   });
 
 const appendIndivToPopulation_ = (population) => (indiv) =>

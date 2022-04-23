@@ -11,6 +11,6 @@ const createCity_ = R.applySpec({
 });
 
 const createMap = (maxCities) =>
-  R.times(appendCityToMap_({})(maxCities), maxCities);
+  R.mergeAll(R.times(appendCityToMap_({max: maxCities})(maxCities), maxCities));
 
 export {createMap};
