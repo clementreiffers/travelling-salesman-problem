@@ -1,7 +1,7 @@
+import * as R from 'ramda';
 import {createPop} from './App/Genetics/population.js';
 import {createMap} from './App/Genetics/map.js';
 import nextGeneration from './App/Genetics/next-gen.js';
-import * as R from 'ramda';
 import {sortListByDist} from './App/Genetics/scores.js';
 
 const MAX_CITIES = 10;
