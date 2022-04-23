@@ -4,8 +4,7 @@ import {crossOverPopulation} from '../App/Genetics/crossover.js';
 import {repairPopulation} from '../App/Genetics/repair.js';
 import {
   getRandomIndex,
-  getRandomValue,
-  shuffleList
+  getRandomValue
 } from '../App/Genetics/common-functions.js';
 
 describe('../App/Genetics/mutation.js', () => {

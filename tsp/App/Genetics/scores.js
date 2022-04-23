@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-// const isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
+// Tconst isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
 
 const pow = (n) => n ** 2;
 

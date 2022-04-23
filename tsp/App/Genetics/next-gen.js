@@ -18,10 +18,10 @@ const killIndiv = (population) => (n) => R.drop(n, population);
 const shouldIHaveThePermissionToKill = () =>
   R.pipe(Math.random, R.lt(1 - 1 / 10));
 
-const killRandomPeople = (population) =>
-  R.last(
-    R.times(R.when(shouldIHaveThePermissionToKill, killIndiv(population)), 3)
-  );
+// const killRandomPeople = (population) =>
+//   R.last(
+//     R.times(R.when(shouldIHaveThePermissionToKill, killIndiv(population)), 3)
+//   );
 
 const nextGeneration = (map) => (maxPop) => (maxCities) =>
   R.pipe(
