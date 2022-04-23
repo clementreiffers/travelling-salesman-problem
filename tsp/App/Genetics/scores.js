@@ -1,31 +1,25 @@
-import * as R from "ramda";
+import * as R from 'ramda';
 
-const isLessThanMaxDistanceRequired = (acc) => R.gt(250, acc.dist);
+const isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
 
 // R.memoizeWith('city1.name + city2.name + axis')
 // const computePowAxis = (city1, city2) => axis => [R.prop(axis, city1), R.prop(axis, city2)] -> R.subtract -> Math.pow(__, 2);
 // const powerAxis = computePowAxis(city1, city2)
 // juxt([powerAxis('x'), powerAxis('y')] -> R.add  -> Math.sqrt
 
-const distance = (city1, city2) =>
+const distance_ = (city1, city2) =>
   Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
 
-const initCalculationsForScore = (acc, v) => {
+const initCalculationsForScore_ = (acc, v) => {
   acc.isFirstCity = false;
   return acc;
 };
 
-const getResidualCity = (city) => R.nth(R.keys(city), city);
-
-const proceedCalculationsForScore = (acc, v) => (map) => {
-  acc.dist += distance(
-    getResidualCity(R.nth(v, map)),
-    getResidualCity(acc.city)
-  );
-
-  acc.score += getResidualCity(R.nth(v, map)).value;
+const proceedCalculationsForScore_ = (acc, v) => (map) => {
+  acc.dist += distance_(R.prop(v, map), acc.city);
+  acc.value += R.prop(v, map).value;
   acc.city = R.prop(v, map);
-
+  acc.cityPassed += 1;
   // R.applySpec({
   //    dist:
   //    score:
@@ -34,42 +28,47 @@ const proceedCalculationsForScore = (acc, v) => (map) => {
   return acc;
 };
 
-const calculateScoreOfIndiv = (m) =>
+const calculateScoreOfIndiv_ = (m) =>
   R.pipe(
     R.reduceWhile(
-      isLessThanMaxDistanceRequired,
+      isLessThanMaxDistanceRequired_,
       (acc, v) => {
+        if (acc.cityPassed === acc.nbrCityWanted) {
+          acc.value = 0;
+          acc.dist = 0;
+          acc.cityPassed = 0;
+        }
         if (R.not(acc.isFirstCity))
-          acc = proceedCalculationsForScore(acc, v)(m);
-        else acc = initCalculationsForScore(acc, v);
-
+          acc = proceedCalculationsForScore_(acc, v)(m);
+        else acc = initCalculationsForScore_(acc, v);
         return acc;
       },
       {
         dist: 0,
-        score: 0,
-        city: R.nth(0, m),
-        isFirstCity: true,
+        value: 0,
+        cityPassed: 0,
+        city: R.prop(0, m),
+        nbrCityWanted: R.prop('max', m),
+        isFirstCity: true
       }
     ),
-    R.omit(["isFirstCity", "city", "previousCityNumber"])
+    R.omit(['isFirstCity', 'city', 'nbrCityWanted'])
   );
 
-const calculateScoresFromArrays = (m) =>
-  R.pipe(R.prop("order"), calculateScoreOfIndiv(m));
+const calculateScoresFromArrays_ = (m) =>
+  R.pipe(R.prop('order'), calculateScoreOfIndiv_(m));
 
-const assocTimeInSeconds = (temporaryProp) => (m) =>
-  R.converge(R.assoc(temporaryProp), [
-    calculateScoresFromArrays(m),
-    R.identity,
-  ]);
+const calculateScoresAndDistsFromIndiv_ = (m) =>
+  R.pipe(R.converge(R.mergeRight, [calculateScoresFromArrays_(m), R.identity]));
 
-const sortListByTimesWithTemporaryName_ = (temporaryProp) => (m) =>
+const sortPopulationWithProp_ = (temporaryProp) => (m) =>
   R.pipe(
-    R.map(assocTimeInSeconds(temporaryProp)(m)),
+    R.map(calculateScoresAndDistsFromIndiv_(m)),
     R.sortBy(R.prop(temporaryProp))
   );
 
-const sortListByScores = (m) => sortListByTimesWithTemporaryName_("score")(m);
+const sortListByScores = (m) => sortPopulationWithProp_('value')(m);
 
-export default sortListByScores;
+const sortListByDist = (m) => sortPopulationWithProp_('dist')(m);
+
+export {sortListByScores, sortListByDist};
