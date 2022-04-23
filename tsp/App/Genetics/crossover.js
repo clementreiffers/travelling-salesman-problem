@@ -21,12 +21,12 @@ const population = [
   [9, 8, 7, 6, 5, 4, 3, 2, 1]
 ];
 
-console.log(
-  R.pipe(
-    R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
-    R.last
-  )(population)
-);
+// console.log(
+//   R.pipe(
+//     R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
+//     R.last
+//   )(population)
+// );
 
 // const shouldCrossover = (crossoverProb) => () =>
 //   Math.random() > 1 - crossoverProb;
