@@ -18,13 +18,7 @@ let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
 const crossoverNumberCity = 3;
 
-<<<<<<< HEAD
-const new_population = R.pipe(
-=======
-console.log(population);
-
 const next_gen = R.pipe(
->>>>>>> 192d9939f9510cd88e78cc5c54e9f75441e16803
   R.pluck('order'),
   mutatePopulation,
   crossOverPopulation,
