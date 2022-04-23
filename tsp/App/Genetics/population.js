@@ -20,7 +20,7 @@ const createIndivFromOrder = R.applySpec({order: R.identity});
 const createPop = (maxPop) => (maxCity) =>
   R.times(appendRandomIndivToPopulation(maxCity)([]), maxPop);
 
-const appendRandomIndivToPopulation = (maxCity) => (population) => (n) =>
+const appendRandomIndivToPopulation = (maxCity) => (population) => () =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
 
 const createPopulationFromListOfOrder = R.map(createIndivFromOrder);
