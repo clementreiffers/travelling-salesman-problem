@@ -25,5 +25,10 @@
     "bracketSpacing": false,
     "singleQuote": true,
     "trailingComma": "none"
-  }
+  },
+  "scripts": {
+  "start": "node index.js",
+  "code-style": "xo",
+  "test": "mocha --recursive"
+}
 }
