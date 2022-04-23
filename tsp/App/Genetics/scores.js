@@ -1,16 +1,23 @@
 import * as R from 'ramda';
 
-const isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
+// const isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
 
-// R.memoizeWith('city1.name + city2.name + axis')
-// const computePowAxis = (city1, city2) => axis => [R.prop(axis, city1), R.prop(axis, city2)] -> R.subtract -> Math.pow(__, 2);
-// const powerAxis = computePowAxis(city1, city2)
-// juxt([powerAxis('x'), powerAxis('y')] -> R.add  -> Math.sqrt
+const pow = (n) => n ** 2;
+
+const sqrt = (n) => n ** (1 / 2);
+
+const subtractAxis = (city1, city2) => (axis) =>
+  R.subtract(R.prop(axis, city1), R.prop(axis, city2));
 
 const distance_ = (city1, city2) =>
-  Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
+  sqrt(
+    R.append(
+      pow(subtractAxis(city1, city2)('x')),
+      pow(subtractAxis(city1, city2)('y'))
+    )
+  );
 
-const initCalculationsForScore_ = (acc, v) => {
+const initCalculationsForScore_ = (acc) => {
   acc.isFirstCity = false;
   return acc;
 };
@@ -50,7 +57,7 @@ const calculateScoreOfIndiv_ = (m) =>
 
         acc = R.ifElse(
           () => R.prop('isFirstCity', acc),
-          () => initCalculationsForScore_(acc, v),
+          () => initCalculationsForScore_(acc),
           () => proceedCalculationsForScore_(acc, v)(m)
         )();
         return acc;
