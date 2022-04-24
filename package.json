@@ -41,5 +41,8 @@
     "bracketSpacing": false,
     "singleQuote": true,
     "trailingComma": "none"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
