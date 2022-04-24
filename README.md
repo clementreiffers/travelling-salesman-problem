@@ -45,7 +45,7 @@ Step order:
 To run the app, you need to install node:  
 <https://nodejs.org/en/download/>
 
-Once installed, with your terminal go to the folder to the root or tsp folder of the project and run the following commande:  
+Once installed, with your terminal go to the folder to the root of the project and run the following commande:  
 
 If you're using npm:
 
@@ -103,9 +103,9 @@ last step {
 
 |   |**Location**|
 |---|---|
-|**Sources codes**|tsp folder|
-|**Gulpfile**|tsp folder|
-|**Unit test scripts**|tsp/test folder|
+|**Source code**|root|
+|**Gulpfile**|root|
+|**Unit test scripts**|test folder|
 
 ### Auto run project
 
@@ -121,7 +121,7 @@ or
 yarn add gulp-cli
 ```
 
-To start it type in the tsp folder the command:
+To start it type in the root folder the command:
 
 ```node
 gulp
@@ -175,11 +175,11 @@ If one of those test failed a mail is sent to the person who tried to merge its 
 
 ## Libraries
 
-<https://nodejs.org/>
-<https://classic.yarnpkg.com/lang/en>
+<https://nodejs.org/>  
+<https://classic.yarnpkg.com/lang/en>  
 <https://ramdajs.com>  
 <https://gulpjs.com>  
 <https://www.chaijs.com/>  
 <https://mochajs.org>  
-<https://github.com/xojs/xo>
-<https://prettier.io>
+<https://github.com/xojs/xo>  
+<https://prettier.io>  
