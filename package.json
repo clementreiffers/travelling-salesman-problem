@@ -1,29 +1,39 @@
 {
-  "name": "tsp_system",
-  "type": "module",
+  "name": "travelling_salesman_problem",
   "version": "1.0.0",
-  "description": "Travelling Salesman Problem system, made in Javascript with ramdajs.",
+  "description": "TSP solver with genetic algorithm made in Javascript with Ramda.",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "mocha test/*.test.js  --recursive",
-    "code-style": "xo"
-  },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/clementreiffers/TSP_system.git"
   },
-  "author": "",
+  "keywords": [
+    "Javascript",
+    "Ramda",
+    "TSP",
+    "TSP-problem",
+    "TSP-solver"
+  ],
+  "author": "Quentin MOREL, Clément REIFFERS",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/clementreiffers/TSP_system/issues"
   },
   "homepage": "https://github.com/clementreiffers/TSP_system#readme",
+  "scripts": {
+    "start": "node index.js",
+    "test":"mocha --recursive",
+    "code-style":"xo"
+  },
   "dependencies": {
+    "ramda": "^0.28.0"
+  },
+  "devDependencies": {
     "chai": "^4.3.6",
-    "child_process": "^1.0.2",
+    "gulp": "^4.0.2",
     "mocha": "^9.2.2",
-    "ramda": "^0.28.0",
+    "prettier": "^2.6.2",
     "xo": "^0.48.0"
   },
   "xo": {
@@ -43,8 +53,5 @@
     "bracketSpacing": false,
     "singleQuote": true,
     "trailingComma": "none"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.2"
   }
 }
