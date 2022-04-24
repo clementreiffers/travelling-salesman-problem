@@ -4,7 +4,9 @@
   "description": "Travelling Salesman Problem system, made in Javascript with ramdajs.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tsp/test/*.test.js  --recursive"
+    "start": "node tsp/index.js",
+    "test": "mocha tsp/test/*.test.js  --recursive",
+    "code-style":"xo"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/clementreiffers/TSP_system#readme",
   "dependencies": {
     "chai": "^4.3.6",
-    "mocha": "^9.2.2"
+    "mocha": "^9.2.2",
+    "xo": "^0.48.0"
   }
 }
