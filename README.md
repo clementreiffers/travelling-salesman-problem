@@ -135,12 +135,12 @@ If one of those test failed a mail is sent to the person who tried to merge its 
 
 ## Authors
 
-- Quentin Morel (<https://github.com/Im-Rises/>)
-- Clément Reiffers (<https://github.com/clementreiffers>)
+- Quentin MOREL (<https://github.com/Im-Rises/>)
+- Clément REIFFERS (<https://github.com/clementreiffers>)
 
 ## Special thanks
 
-- Waxo (<https://github.com/Waxo>)
+- Maxime ROBIN (<https://github.com/Waxo>)
 
 ## Documentations
 
