@@ -175,11 +175,29 @@ If one of those test failed a mail is sent to the person who tried to merge its 
 
 ## Libraries
 
+Node and npm (runtime environment and software packaging system):  
 <https://nodejs.org/>  
+
+Yarn (software packaging system):  
 <https://classic.yarnpkg.com/lang/en>  
+
+Ramda (functional programming library in JS):  
 <https://ramdajs.com>  
+
+Gulp (auto script starter):  
 <https://gulpjs.com>  
+
+Chai (assertion library):  
 <https://www.chaijs.com/>  
+
+Mocha (test framework):  
 <https://mochajs.org>  
+
+Xo (code formater wraper):  
 <https://github.com/xojs/xo>  
+
+Prettier (code formatter):  
 <https://prettier.io>  
+
+Editor config (normalize the IDE for the project):  
+<https://EditorConfig.org>
