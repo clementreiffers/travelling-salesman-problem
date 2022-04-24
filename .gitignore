@@ -12,7 +12,7 @@ node_modules/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # Yarn.lock file
-*.lock
+# *.lock/
 
 # User-specific stuff
 .idea/**/workspace.xml
