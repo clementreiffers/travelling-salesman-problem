@@ -1,16 +1,23 @@
 {
-  "name": "TSP_system",
+  "name": "tsp_system",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/clementreiffers/TSP_system.git",
-  "author": "QuentinM <59691442+Im-Rises@users.noreply.github.com>",
-  "license": "MIT",
   "description": "Travelling Salesman Problem system, made in Javascript with ramdajs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tsp/test/*.test.js  --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clementreiffers/TSP_system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clementreiffers/TSP_system/issues"
+  },
+  "homepage": "https://github.com/clementreiffers/TSP_system#readme",
   "dependencies": {
     "chai": "^4.3.6",
     "mocha": "^9.2.2"
-  },
-  "scripts": {
-    "test": "mocha tsp/**/*.test.js"
   }
 }
