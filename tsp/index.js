@@ -1,51 +1,37 @@
-import * as R from "ramda";
-// import * as p5 from "p5";
+import * as R from 'ramda';
+import {createPop} from './App/Genetics/population.js';
+import {createMap} from './App/Genetics/map.js';
+import nextGeneration from './App/Genetics/next-gen.js';
+import {sortListByDist} from './App/Genetics/scores.js';
 
 const MAX_CITIES = 10;
-const MAX_POPULATION = 10;
+const MAX_POPULATION = 100;
+// Tconst MAX_GEN = 10;
 
-const cities = {};
-const population = [];
+// Tconst map = {0: {x: 0, y: 0, value: 0}, 1: {x: 1, y: 1, value: 1}};
+// Tconst population = [{order: [0, 0]}, {order: [0, 1]}];
 
-const createCity = (number) =>
-  (cities[number] = {
-    x: parseInt(Math.random() * 10),
-    y: parseInt(Math.random() * 10),
-  });
+// Tconsole.log(sortListByDist(map)(population));
 
-// fonction qui nous sert pour le unfold
-const createItemForIterate = (n) => (n === 0 ? false : [-n, n + 1]);
+const map = createMap(MAX_CITIES);
+let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-// unfold c'est l'inverse d'un reduce, on cree ici une liste d'element a partir d'un chiffre
-const unfoldCities = R.unfold(createItemForIterate, -MAX_CITIES);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = sortListByDist(map)(population);
+console.log('first step', R.head(population));
 
-const shuffle = R.sort(() => Math.random() - 0.5);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 
-const createIndiv = () =>
-  population.push({ order: shuffle(unfoldPopulation), score: "" });
-const unfoldPopulation = R.unfold(createItemForIterate, -MAX_POPULATION);
+population = sortListByDist(map)(population);
+console.log(R.length(population));
 
-const vectorNorm = (city1, city2) =>
-  Math.sqrt(Math.pow(city1.x - city2.x, 2) + Math.pow(city1.y - city2.y, 2));
-// const
-
-const createPopulation = R.append(R.forEach(createIndiv, unfoldCities));
-
-// a revoir
-const createCities = R.forEach(createCity, unfoldCities);
-
-const calculateScores = (array) => {
-  let score = 0;
-  for (let i in array) {
-    if (Number(i) + 1 < array.length)
-      score += vectorNorm(
-        cities[R.nth(i, array)],
-        cities[R.nth(Number(i) + 1, array)]
-      );
-  }
-  return score;
-};
-
-console.log(calculateScores([1, 2, 3, 4]));
-
-// console.log(createPopulation(population));
+console.log('last step', R.head(population));
