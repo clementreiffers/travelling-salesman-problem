@@ -19,7 +19,7 @@ The optimisation solution is the one one where a saleman goes through all the ci
 In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to another take more or less time than other depending on the distance.
 
 <p align="center">
-    <img src="README_files/tspExampleImage.png" alt="tspExampleImage" style="height:400px"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Weighted_K4.svg/1024px-Weighted_K4.svg.png" alt="tspExampleImage" style="height:400px"/>
 </p>  
 
 ### App description/implementation
@@ -47,8 +47,16 @@ To run the app, you need to install node:
 
 Once installed, with your terminal go to the folder to the root or tsp folder of the project and run the following commande:  
 
+If you're using npm:
+
 ```node
-npm installed
+npm install
+```
+
+or if you're using Yarn:
+
+```node
+yarn install
 ```
 
 It will install all the needed libraries to start the project.
@@ -59,6 +67,12 @@ After just start the program by typing:
 
 ```node
 npm start
+```
+
+or
+
+```node
+yarn start
 ```
 
 ## Output example
@@ -101,6 +115,12 @@ The project has a gulpfile to autorun the script while prorgramming. To install 
 npm install --global gulp-cli
 ```
 
+or
+
+```node
+yarn add gulp-cli
+```
+
 To start it type in the tsp folder the command:
 
 ```node
@@ -115,7 +135,13 @@ The gulp file is written in js.
 To run the unit test scritps, you can type the command:
 
 ```node
-npm run test
+npm test
+```
+
+or
+
+```node
+yarn test
 ```
 
 It will start mocha that will look for test scripts.  
@@ -149,6 +175,8 @@ If one of those test failed a mail is sent to the person who tried to merge its 
 
 ## Libraries
 
+<https://nodejs.org/>
+<https://classic.yarnpkg.com/lang/en>
 <https://ramdajs.com>  
 <https://gulpjs.com>  
 <https://www.chaijs.com/>  
