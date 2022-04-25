@@ -175,6 +175,8 @@ Warning:
 
 ## GitActions
 
+[![Node.js CI](https://github.com/clementreiffers/travelling_salesman_problem/actions/workflows/node.js.yml/badge.svg)](https://github.com/clementreiffers/travelling_salesman_problem/actions/workflows/node.js.yml)
+
 The project is set with GitHub Actions that will test:
 
 - code format and functions not used (xo)
