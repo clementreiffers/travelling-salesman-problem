@@ -4,24 +4,21 @@ import {crossOverPopulation} from './crossover.js';
 import {repairPopulation} from './repair.js';
 import {createPop, createPopulationFromListOfOrder} from './population.js';
 import {sortListByDist} from './scores.js';
+import {shuffleList} from './common-functions.js';
 
-const percentageDeleted = () => 10 / 100;
+//  T const indexMaxFromPercentageDeleted = (population) =>
+//   Math.round(R.multiply(percentageDeleted(), R.length(population)));
 
-const indexMaxFromPercentageDeleted = (population) =>
-  Math.round(R.multiply(percentageDeleted(), R.length(population)));
+// T const killWeakPeople = (population) =>
+//   R.slice(0, indexMaxFromPercentageDeleted(population), population);
 
-const killWeakPeople = (population) =>
-  R.slice(0, indexMaxFromPercentageDeleted(population), population);
+const sixtyPercent = (pop) =>
+  Math.floor(R.divide(R.multiply(60, R.length(pop)), 100));
 
-// Tconst killIndiv = (population) => (n) => R.drop(n, population);
-//
-// Tconst shouldIHaveThePermissionToKill = () =>
-//   R.pipe(Math.random, R.lt(1 - 1 / 10));
+const killRandomPeople = (pop) =>
+  R.slice(0, sixtyPercent(pop), shuffleList(pop));
 
-// Tconst killRandomPeople = (population) =>
-//   R.last(
-//     R.times(R.when(shouldIHaveThePermissionToKill, killIndiv(population)), 3)
-//   );
+const cloneTheBestIndiv = (pop) => R.append(R.head(pop), pop);
 
 const nextGeneration = (map) => (maxPop) => (maxCities) =>
   R.pipe(
@@ -30,11 +27,10 @@ const nextGeneration = (map) => (maxPop) => (maxCities) =>
     crossOverPopulation,
     repairPopulation,
     createPopulationFromListOfOrder,
+    killRandomPeople,
     sortListByDist(map),
-    killWeakPeople,
+    cloneTheBestIndiv,
     R.concat(createPop(maxPop)(maxCities))
   );
-
-// Majuscule console.log(killRandomPeople([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
 export default nextGeneration;
