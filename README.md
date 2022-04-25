@@ -148,6 +148,20 @@ It will start mocha that will look for test scripts.
 The test scripts are written in js with Chai.
 Take note that github verify the correct work of the tests.
 
+### Code format test
+
+You can test the format code of the project by typing the following command:  
+
+```node
+npm run code-style
+```
+
+or
+
+```node
+yarn run code-style
+```
+
 ## GitActions
 
 The project is set with GitHub Actions that will test:
