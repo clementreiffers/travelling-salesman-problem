@@ -107,6 +107,10 @@ last step {
 |**Gulpfile**|root|
 |**Unit test scripts**|test folder|
 
+## Developers tools
+
+The project is set with some tools like auto run (gulp), unit test (chai, mocha), code formatter (xo/prettier).
+
 ### Auto run project
 
 The project has a gulpfile to autorun the script while prorgramming. To install gulp type the following command:
@@ -166,12 +170,12 @@ yarn run code-style
 
 The project is set with GitHub Actions that will test:
 
-- code format and functions not used
+- code format and functions not used (xo)
 
-- unit test scripts
+- unit test scripts (chai and mocha)
 
 If one of those test failed a mail is sent to the person who tried to merge its code from the staging to main branch.  
-*To easily achieve the code format test, you should use prettier that is already set with some parameters in the project*
+*To easily achieve the code format test, you should use prettier for xo codeformatting that is already set with some parameters in the project*
 
 ## Authors
 
