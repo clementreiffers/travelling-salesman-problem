@@ -32,6 +32,5 @@ population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 
 population = sortListByDist(map)(population);
-console.log(R.length(population));
 
 console.log('last step', R.head(population));
