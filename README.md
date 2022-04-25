@@ -107,6 +107,10 @@ last step {
 |**Gulpfile**|root|
 |**Unit test scripts**|test folder|
 
+The Source code is at the root folder and contains the TSP.  
+The gulpfile is an auto-run script to run the TSP.  
+The unit test scripts are a set of scripts to verify the good behaviour of some functions.  
+
 ## Developers tools
 
 The project is set with some tools like auto run (gulp), unit test (chai, mocha), code formatter (xo/prettier).
@@ -166,6 +170,9 @@ or
 yarn run code-style
 ```
 
+Warning:  
+*To easily achieve the code format test, you should use prettier for xo codeformatting that is already set with some parameters in the project*
+
 ## GitActions
 
 The project is set with GitHub Actions that will test:
@@ -174,8 +181,7 @@ The project is set with GitHub Actions that will test:
 
 - unit test scripts (chai and mocha)
 
-If one of those test failed a mail is sent to the person who tried to merge its code from the staging to main branch.  
-*To easily achieve the code format test, you should use prettier for xo codeformatting that is already set with some parameters in the project*
+If one of those test failed a mail is sent to the person who tried to merge its code from the staging to main branch.
 
 ## Authors
 
