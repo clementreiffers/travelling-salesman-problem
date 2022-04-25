@@ -45,6 +45,4 @@ const crossOverPopulation = (population) =>
     )
   );
 
-// Test
-
 export {crossOverPopulation};
