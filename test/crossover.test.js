@@ -11,7 +11,7 @@ describe('../App/Genetics/crossover.js', () => {
         ])
       )
         .to.be.an('array')
-        .to.be.lengthOf(2);
+        .to.be.lengthOf(4);
       expect(
         crossOverPopulation([
           [1, 2, 3, 4, 5, 6, 7, 8, 9],
