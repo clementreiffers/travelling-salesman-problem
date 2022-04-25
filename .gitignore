@@ -2,7 +2,7 @@
 
 *.idea/
 node_modules/
-
+[Vv]ideos/
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,node
