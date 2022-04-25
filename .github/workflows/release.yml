@@ -1,0 +1,16 @@
+name: Main
+
+on: 
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
