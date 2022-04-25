@@ -28,6 +28,13 @@ const createOffsprings = (population) =>
     R.last
   )(population);
 
+// const deletePopulation = (population) =>
+//   R.slice(
+//     0,
+//     Math.ceil(population.length * percentParentsDeletion),
+//     createOffsprings(population)
+//   );
+
 const crossOverPopulation = (population) =>
   R.concat(
     R.slice(
@@ -38,7 +45,9 @@ const crossOverPopulation = (population) =>
   )(
     R.slice(
       0,
-      Math.ceil(population.length * percentParentsDeletion),
+      Math.floor(
+        population.length - population.length * percentParentsDeletion
+      ),
       population
     )
   );
