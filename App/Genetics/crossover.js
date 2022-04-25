@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import {getRandomIndex} from './common-functions.js';
 
 // Crossover
-const crossoverProbability = 1;
+const crossoverProbability = 1 / 5;
 
 const percentParentsDeletion = 4 / 10;
 
