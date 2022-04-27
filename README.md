@@ -19,9 +19,11 @@ The optimisation solution is the one one where a saleman goes through all the ci
 In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to another take more or less time than other depending on the distance.
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/59691442/165261689-bdb9b82b-8f84-41f7-8ccd-9e9a1cad9582.png" alt="tspExampleImage" style="height:400px"/>
+    <img src="https://user-images.githubusercontent.com/59691442/165635831-5bfc72b5-0dd3-4a9f-afb0-b5ffd402ee88.png" alt="tspExampleImage" style="height:400px"/>
 </p>
 <!-- https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Weighted_K4.svg/1024px-Weighted_K4.svg.png -->
+<!-- https://user-images.githubusercontent.com/59691442/165261689-bdb9b82b-8f84-41f7-8ccd-9e9a1cad9582.png -->
+<!-- https://user-images.githubusercontent.com/59691442/165635419-efc33439-e69d-451a-af87-c7ab81d032a1.jpg -->
 
 ### App description/implementation
 
