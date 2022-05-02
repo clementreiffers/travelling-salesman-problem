@@ -6,12 +6,6 @@ import {createPop, createPopulationFromListOfOrder} from './population.js';
 import {sortListByDist} from './scores.js';
 import {shuffleList} from './common-functions.js';
 
-//  T const indexMaxFromPercentageDeleted = (population) =>
-//   Math.round(R.multiply(percentageDeleted(), R.length(population)));
-
-// T const killWeakPeople = (population) =>
-//   R.slice(0, indexMaxFromPercentageDeleted(population), population);
-
 const sixtyPercent = (pop) =>
   Math.floor(R.divide(R.multiply(60, R.length(pop)), 100));
 
