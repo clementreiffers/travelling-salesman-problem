@@ -1,6 +1,26 @@
 import {expect} from 'chai';
 import {crossOverPopulation} from '../App/Genetics/crossover.js';
 
+// for (let i = 0; i < 100; i++) {
+//   let populationArray = Array.from(Array(i), () => new Array(9).fill(0));
+//
+//   describe('../App/Genetics/crossover.js', () => {
+//     describe('#crossOverPopulation()', () => {
+//       it('Crossover function for array of size [2,9]', () => {
+//         expect(crossOverPopulation(populationArray))
+//           .to.be.an('array')
+//           .to.be.lengthOf(i);
+//         // expect(crossOverPopulation(populationArray)[0])
+//         //   .to.be.an('array')
+//         //   .to.be.lengthOf(9);
+//         // expect(crossOverPopulation(populationArray)[1])
+//         //   .to.be.an('array')
+//         //   .to.be.lengthOf(9);
+//       });
+//     });
+//   });
+// }
+
 describe('../App/Genetics/crossover.js', () => {
   describe('#crossOverPopulation()', () => {
     it('Crossover function for array of size [2,9]', () => {
