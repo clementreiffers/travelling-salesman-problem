@@ -12,7 +12,7 @@ let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = sortListByDist(map)(population);
-console.log('first step', R.head(population));
+// console.log('first step', R.head(population));
 
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
@@ -24,7 +24,17 @@ population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
+population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 
-population = sortListByDist(map)(population);
-
-console.log('last step', R.head(population));
+console.log('last step', population);
