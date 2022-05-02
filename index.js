@@ -37,4 +37,4 @@ population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 population = nextGeneration(map)(MAX_POPULATION)(MAX_CITIES)(population);
 
-console.log('last step', population);
+console.log(population);

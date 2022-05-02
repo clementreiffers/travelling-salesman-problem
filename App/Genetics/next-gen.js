@@ -18,14 +18,12 @@ const cloneTheBestIndiv = (pop) => R.append(R.head(pop), pop);
 
 const nextGeneration = (map) => (maxPop) => (maxCities) =>
   R.pipe(
+    sortListByDist(map),
     R.pluck('order'),
     mutatePopulation,
     crossOverPopulation,
     repairPopulation,
     createPopulationFromListOfOrder,
-    sortListByDist(map),
-    killSixtyPercent,
-    R.concat(R.slice(0, 40, createPop(maxPop)(maxCities))),
     sortListByDist(map)
   );
 
