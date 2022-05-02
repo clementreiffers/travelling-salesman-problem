@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-// Tconst isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
+const isLessThanMaxDistanceRequired_ = (acc) => R.gt(250, acc.dist);
 
 const pow = (n) => n ** 2;
 
@@ -11,7 +11,7 @@ const subtractAxis = (city1, city2) => (axis) =>
 
 const distance_ = (city1, city2) =>
   sqrt(
-    R.append(
+    R.add(
       pow(subtractAxis(city1, city2)('x')),
       pow(subtractAxis(city1, city2)('y'))
     )
@@ -44,21 +44,25 @@ const setAcc = (value, dist, cityPassed, city, nbrCityWanted, isFirstCity) =>
     })
   );
 
-const calculateScoreOfIndiv_ = (m) =>
+const calculateScoreOfIndiv_ = (map) =>
   R.pipe(
     R.reduceWhile(
-      R.T,
+      isLessThanMaxDistanceRequired_,
       (acc, v) => {
-        acc = R.ifElse(
-          () => R.equals(acc.cityPassed, acc.nbrCityWanted),
-          () => setAcc(0, 0, 0, acc.city, acc.nbrCityWanted, acc.isFirstCity)(),
-          () => acc
-        )();
+        // acc = R.ifElse(
+        //   () =>
+        //     R.converge(R.equals, [
+        //       R.prop('cityPassed', acc),
+        //       R.prop('nbrCityWanted', acc)
+        //     ]),
+        //   () => setAcc(0, 0, 0, acc.city, acc.nbrCityWanted, acc.isFirstCity)(),
+        //   () => acc
+        // )();
 
         acc = R.ifElse(
           () => R.prop('isFirstCity', acc),
           () => initCalculationsForScore_(acc),
-          () => proceedCalculationsForScore_(acc, v)(m)
+          () => proceedCalculationsForScore_(acc, v)(map)
         )();
         return acc;
       },
@@ -66,19 +70,21 @@ const calculateScoreOfIndiv_ = (m) =>
         dist: 0,
         value: 0,
         cityPassed: 0,
-        city: R.prop(0, m),
-        nbrCityWanted: R.prop('max', m),
+        city: R.prop(0, map),
+        nbrCityWanted: R.prop('max', map),
         isFirstCity: true
       }
     ),
     R.omit(['isFirstCity', 'city', 'nbrCityWanted'])
   );
 
-const calculateScoresFromArrays_ = (m) =>
-  R.pipe(R.prop('order'), calculateScoreOfIndiv_(m));
+const calculateScoresFromArrays_ = (map) =>
+  R.pipe(R.prop('order'), calculateScoreOfIndiv_(map));
 
-const calculateScoresAndDistsFromIndiv_ = (m) =>
-  R.pipe(R.converge(R.mergeRight, [calculateScoresFromArrays_(m), R.identity]));
+const calculateScoresAndDistsFromIndiv_ = (map) =>
+  R.pipe(
+    R.converge(R.mergeRight, [calculateScoresFromArrays_(map), R.identity])
+  );
 
 const sortPopulationWithProp_ = (temporaryProp) => (m) =>
   R.pipe(

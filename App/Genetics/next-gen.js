@@ -12,19 +12,19 @@ const sixtyPercent = (pop) =>
 const killRandomPeople = (pop) =>
   R.slice(0, sixtyPercent(pop), shuffleList(pop));
 
+const killSixtyPercent = (pop) => R.slice(0, sixtyPercent(pop), pop);
+
 const cloneTheBestIndiv = (pop) => R.append(R.head(pop), pop);
 
 const nextGeneration = (map) => (maxPop) => (maxCities) =>
   R.pipe(
+    sortListByDist(map),
     R.pluck('order'),
     mutatePopulation,
     crossOverPopulation,
     repairPopulation,
     createPopulationFromListOfOrder,
-    killRandomPeople,
-    sortListByDist(map),
-    cloneTheBestIndiv,
-    R.concat(createPop(maxPop)(maxCities))
+    sortListByDist(map)
   );
 
 export default nextGeneration;
