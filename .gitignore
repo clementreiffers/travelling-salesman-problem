@@ -4,6 +4,11 @@
 node_modules/
 [Vv]ideos/
 
+# Ignore those js node files
+
+package-lock.json
+yarn.lock
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,node
