@@ -1,6 +1,6 @@
 # Travelling Salesman Problem
 
-<p style="text-align: center">
+<p align="center">
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="javascriptLogo" style="height:50px;"/>
   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="nodejsLogo" style="height:50px;"/>
   <img src="https://ramdajs.com/ramdaFilled_200x235.png" alt="ramdajsLogo" style="height:50px;"/>
@@ -18,7 +18,7 @@ The optimization solution is the one where a salesman goes through all the citie
 
 In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to another take more or less time than other depending on the distance.
 
-<p style="text-align: center">
+<p align="center">
     <img src="https://user-images.githubusercontent.com/59691442/165635831-5bfc72b5-0dd3-4a9f-afb0-b5ffd402ee88.png" alt="tspExampleImage" style="height:400px"/>
 </p>
 <!-- https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Weighted_K4.svg/1024px-Weighted_K4.svg.png -->
@@ -82,23 +82,19 @@ yarn start
 ## Output example
 
 ```text
-first step {
-  value: 9,
-  cityPassed: 9,
-  dist: 44,
+First iteration :  {
   order: [
-    3, 2, 7, 5, 1,
-    6, 4, 8, 9, 0
-  ]
+    4, 2, 6, 1, 5,
+    8, 7, 0, 9, 3
+  ],
+  score: 47
 }
-last step {
-  value: 9,
-  cityPassed: 9,
-  dist: 39,
+Last iteration (100) :  {
   order: [
-    5, 8, 3, 6, 0,
-    9, 7, 4, 1, 2
-  ]
+    1, 5, 9, 8, 0,
+    6, 4, 7, 3, 2
+  ],
+  score: 93
 }
 ```
 
