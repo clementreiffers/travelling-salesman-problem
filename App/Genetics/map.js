@@ -5,9 +5,9 @@ const appendCityToMap_ = (map) => (maxCities) => (city) =>
   R.assoc(city, createCity_(maxCities), map);
 
 const createCity_ = R.applySpec({
-  x: getRandomValue,
-  y: getRandomValue,
-  value: getRandomValue
+  x: getRandomValue(100),
+  y: getRandomValue(100),
+  value: () => getRandomValue(100)
 });
 
 const createMap = (maxCities) =>

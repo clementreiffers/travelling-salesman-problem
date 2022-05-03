@@ -25,14 +25,16 @@ const computeScoreWithConstraint = (cities, constraint) =>
             R.lensProp('score'),
             R.add(R.prop('value', R.prop(x, cities)))
           ),
-          R.over(R.lensProp('distance'), R.add(400)),
+          R.over(
+            R.lensProp('distance'),
+            R.add(distance_(acc.currentPosition, R.prop(x, cities)))
+          ),
           R.over(R.lensProp('currentPosition'), () => R.prop(x, cities))
         )(acc),
       {
         distance: 0,
         score: 0,
-        currentPosition: undefined,
-        lastPosition: undefined
+        currentPosition: undefined
       }
     ),
     R.prop('score')
@@ -46,11 +48,8 @@ const getScoreFromPopulation = (cities, constraint) =>
     })
   );
 
-const sortPopulationWithProp_ = (prop) => (map) =>
-  R.pipe(getScoreFromPopulation(map, 1000), R.sortBy(R.prop(prop)));
+const sortPopulationWithProp_ = (prop) => (map) => R.sortBy(R.prop(prop));
 
 const sortListByScores = (map) => sortPopulationWithProp_('score')(map);
-
-// const sortListByDist = (map) => sortPopulationWithProp_('dist')(map);
 
 export {sortListByScores, getScoreFromPopulation};
