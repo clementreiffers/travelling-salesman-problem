@@ -3,7 +3,7 @@ import {mutatePopulation} from './mutation.js';
 import {crossOverPopulation} from './crossover.js';
 import {repairPopulation} from './repair.js';
 import {createPop, createPopulationFromListOfOrder} from './population.js';
-import {sortListByDist} from './scores.js';
+import {sortListByScores} from './scores.js';
 import {shuffleList} from './common-functions.js';
 
 const sixtyPercent = (pop) =>
@@ -18,13 +18,14 @@ const cloneTheBestIndiv = (pop) => R.append(R.head(pop), pop);
 
 const nextGeneration = (map) => (maxPop) => (maxCities) =>
   R.pipe(
-    sortListByDist(map),
-    R.pluck('order'),
-    mutatePopulation,
-    crossOverPopulation,
-    repairPopulation,
-    createPopulationFromListOfOrder,
-    sortListByDist(map)
+    sortListByScores(map),
+    R.pluck('path'),
+    R.tap(console.log)
+    // mutatePopulation,
+    // crossOverPopulation,
+    // repairPopulation
+    // sortListByScores(map)
+    // createPopulationFromListOfOrder
   );
 
 export default nextGeneration;
