@@ -10,12 +10,6 @@ const numberOfIteration = 1;
 const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-// const getJson = nextGeneration(map)(population);
-//
-// const repeat = R.repeat(getJson, numberOfIteration);
-//
-// console.log(repeat);
-
 for (let i = 0; i < numberOfIteration; i++) {
   population = nextGeneration(map)(population);
 }
