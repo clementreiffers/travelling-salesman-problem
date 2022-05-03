@@ -48,8 +48,8 @@ const getScoreFromPopulation = (cities, constraint) =>
     })
   );
 
-const sortPopulationWithProp_ = (prop) => (map) => R.sortBy(R.prop(prop));
+const sortPopulationWithProp_ = (prop) => R.sortBy(R.prop(prop));
 
-const sortListByScores = (map) => sortPopulationWithProp_('score')(map);
+const sortListByScores = () => sortPopulationWithProp_('score');
 
 export {sortListByScores, getScoreFromPopulation};
