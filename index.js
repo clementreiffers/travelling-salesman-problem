@@ -11,11 +11,18 @@ const numberOfIteration = 100;
 const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-population = nextGeneration(map)(MAX_DISTANCE)(population);
-console.log('First iteration :', R.head(population));
+// population = nextGeneration(map)(MAX_DISTANCE)(population);
+// console.log('First iteration :', R.head(population));
+//
+// for (let i = 0; i < numberOfIteration; i++) {
+//   population = nextGeneration(map)(MAX_DISTANCE)(population);
+// }
+//
+// console.log('Last iteration (' + numberOfIteration + ') :', R.head(population));
 
-for (let i = 0; i < numberOfIteration; i++) {
-  population = nextGeneration(map)(MAX_DISTANCE)(population);
-}
+const testRepeat = R.repeat(
+  R.head(nextGeneration(map)(MAX_DISTANCE)(population)),
+  numberOfIteration
+);
 
-console.log('Last iteration (' + numberOfIteration + ') :', R.head(population));
+console.log(R.uniq(testRepeat));
