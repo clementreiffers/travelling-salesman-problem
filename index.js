@@ -12,12 +12,10 @@ const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
 population = nextGeneration(map)(MAX_DISTANCE)(population);
-console.log('First iteration : ', R.head(population));
+console.log('First iteration :', R.head(population));
 
 for (let i = 0; i < numberOfIteration; i++) {
   population = nextGeneration(map)(MAX_DISTANCE)(population);
 }
-console.log(
-  'Last iteration (' + numberOfIteration + ') : ',
-  R.head(population)
-);
+
+console.log('Last iteration (' + numberOfIteration + ') :', R.head(population));
