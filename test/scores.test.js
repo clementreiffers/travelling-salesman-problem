@@ -1,21 +1,32 @@
 import {expect} from 'chai';
-import {sortListByDist, sortListByScores} from '../App/Genetics/scores.js';
+import {
+  getScoreFromPopulation,
+  sortListByScores
+} from '../App/Genetics/scores.js';
 
-const map = {0: {x: 0, y: 0, value: 0}, 1: {x: 1, y: 1, value: 1}};
-const population = [{order: [0, 0]}, {order: [0, 1]}];
-// Tconst sortedPop = sortListByDist(map)(population);
+const map = {
+  paris: {x: 1, y: 2, value: 300},
+  lyon: {x: 100, y: 300, value: 500},
+  marseille: {x: 120, y: 500, value: 20},
+  bordeaux: {x: -12, y: 300, value: 1000}
+};
+
+const population = [
+  ['paris', 'lyon', 'marseille', 'bordeaux'],
+  ['bordeaux', 'lyon', 'marseille', 'paris']
+];
 
 describe('../App/Genetics/scores.js', () => {
-  describe('#sortListByDist()', () => {
-    it('should return a sorted array of population by distance', () => {
-      expect(sortListByDist(map)(population)).to.be.an('array');
+  describe('#sortListByScores()', () => {
+    it('should return a sorted array of population by scores', () => {
+      expect(sortListByScores(map)(population)).to.be.an('array');
 
       it.skip('should return an error', () => {});
     });
   });
-  describe('#sortListByScores()', () => {
-    it('should return a sorted array of population by value', () => {
-      expect(sortListByScores(map)(population)).to.be.an('array');
+  describe('#getScoreFromPopulation()', () => {
+    it('should return an array of path with their scores', () => {
+      expect(getScoreFromPopulation(map, 100)(population)).to.be.an('array');
 
       it.skip('should return an error', () => {});
     });
