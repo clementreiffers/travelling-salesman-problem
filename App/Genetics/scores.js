@@ -22,21 +22,20 @@ const isDistanceLessThanTheMax = (value, constraint) => {
   return R.lt(value, constraint);
 };
 
+const affiliateValues = (key, value) => R.over(R.lensProp(key), value);
+
 const computeScoreWithConstraint = (cities, constraint) =>
   R.pipe(
     R.reduceWhile(
       (acc) => isDistanceLessThanTheMax(R.prop('distance', acc), constraint),
       (acc, x) =>
         R.pipe(
-          R.over(
-            R.lensProp('score'),
-            R.add(R.prop('value', R.prop(x, cities)))
+          affiliateValues('score', R.add(R.prop('value', R.prop(x, cities)))),
+          affiliateValues(
+            'distance',
+            R.add(distance_(R.prop('currentPosition', acc), R.prop(x, cities)))
           ),
-          R.over(
-            R.lensProp('distance'),
-            R.add(distance_(acc.currentPosition, R.prop(x, cities)))
-          ),
-          R.over(R.lensProp('currentPosition'), () => R.prop(x, cities))
+          affiliateValues('currentPosition', () => R.prop(x, cities))
         )(acc),
       {
         distance: 0,
