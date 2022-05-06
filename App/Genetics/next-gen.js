@@ -6,7 +6,7 @@ import {getScoreFromPopulation, sortListByScores} from './scores.js';
 
 const nextGeneration = (map) => (maxDistance) =>
   R.pipe(
-    R.pluck('order'),
+    R.pluck('path'),
     mutatePopulation,
     crossOverPopulation,
     repairPopulation,

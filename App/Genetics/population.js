@@ -9,13 +9,13 @@ const createRandomCityPath_ = (maxCities) =>
 
 const createRandomIndiv_ = (maxCity) =>
   R.applySpec({
-    order: () => createRandomCityPath_(maxCity)
+    path: () => createRandomCityPath_(maxCity)
   });
 
 const appendIndivToPopulation_ = (population) => (indiv) =>
   R.nth(0, R.append(indiv, population));
 
-const createIndivFromOrder = R.applySpec({order: R.identity});
+const createIndivFromPath = R.applySpec({path: R.identity});
 
 const createPop = (maxPop) => (maxCity) =>
   R.times(appendRandomIndivToPopulation(maxCity)([]), maxPop);
@@ -23,6 +23,6 @@ const createPop = (maxPop) => (maxCity) =>
 const appendRandomIndivToPopulation = (maxCity) => (population) => () =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
 
-const createPopulationFromListOfOrder = R.map(createIndivFromOrder);
+const createPopulationFromListOfPath = R.map(createIndivFromPath);
 
-export {createPop, createPopulationFromListOfOrder};
+export {createPop, createPopulationFromListOfPath};
