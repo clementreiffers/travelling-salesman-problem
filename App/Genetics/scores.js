@@ -48,7 +48,7 @@ const computeScoreWithConstraint = (cities, constraint) =>
 const getScoreFromPopulation = (cities, constraint) =>
   R.map(
     R.applySpec({
-      order: R.identity,
+      path: R.identity,
       score: computeScoreWithConstraint(cities, constraint)
     })
   );
