@@ -18,10 +18,12 @@ const doCyle = () => {
 
 const calculateTsp = R.times(doCyle, numberOfIteration);
 
-// First iteration best result
-console.log('Best result 1st iteration :', R.head(R.head(calculateTsp)));
-// Last iteration best result
+const showBestResultFirstIteration = R.head(R.head(calculateTsp));
+
+const showBestResultLastIteration = R.head(R.last(calculateTsp));
+
+console.log('Best result 1st iteration :', showBestResultFirstIteration);
 console.log(
   'Best result ' + numberOfIteration + ' iterations',
-  R.head(R.last(calculateTsp))
+  showBestResultLastIteration
 );
