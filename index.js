@@ -3,19 +3,37 @@ import {createPop} from './App/Genetics/population.js';
 import {createMap} from './App/Genetics/map.js';
 import nextGeneration from './App/Genetics/next-gen.js';
 
-const MAX_CITIES = 10;
+/*
+below, 4 values you can change to test the code
+it's only hyper parameters:
+- The number of city
+- The population size
+- The max distance calculated
+- the number of iteration
+ */
+
+const MAX_CITIES = 50;
 const MAX_POPULATION = 10;
-const MAX_DISTANCE = 150;
-const numberOfIteration = 100;
+const MAX_DISTANCE = 500;
+const MAX_ITERATIONS = 100;
 
 const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
-population = nextGeneration(map)(MAX_DISTANCE)(population);
-console.log('First iteration :', R.head(population));
-
-for (let i = 0; i < numberOfIteration; i++) {
+const changePopulation = () => {
   population = nextGeneration(map)(MAX_DISTANCE)(population);
-}
+  return population;
+};
 
-console.log('Last iteration (' + numberOfIteration + ') :', R.head(population));
+const repeatNextGeneration = R.times(changePopulation, MAX_ITERATIONS);
+
+const getResults = R.pipe(
+  R.applySpec({
+    firstIteration: R.head,
+    lastIteration: R.last
+  }),
+  R.map(R.head)
+);
+
+console.log('All Cities : \n', map);
+console.log(getResults(repeatNextGeneration));
