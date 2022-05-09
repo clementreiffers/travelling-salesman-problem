@@ -22,10 +22,19 @@ const showBestResultFirstIteration = R.head(R.head(calculateTsp));
 
 const showBestResultLastIteration = R.head(R.last(calculateTsp));
 
-console.log('all Cities : \n', map);
+console.log(
+  '-----------------------------------------------------------------'
+);
 
-console.log('Best result 1st iteration :', showBestResultFirstIteration);
+console.log('All Cities : \n', map, '\n');
+
+console.log('Best result 1st iteration :', showBestResultFirstIteration, '\n');
 console.log(
   'Best result ' + MAX_ITERATIONS + ' iterations',
-  showBestResultLastIteration
+  showBestResultLastIteration,
+  '\n'
+);
+
+console.log(
+  '-----------------------------------------------------------------'
 );
