@@ -12,7 +12,7 @@ const nextGeneration = (map) => (maxDistance) =>
     repairPopulation,
     getScoreFromPopulation(map, maxDistance),
     sortListByScores(map),
-    R.reverse // to have the best scores on the top of the list
+    R.reverse // To have the best scores on the top of the list
   );
 
 export default nextGeneration;
