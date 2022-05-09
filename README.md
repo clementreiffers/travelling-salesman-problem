@@ -14,7 +14,7 @@ Travelling Salesman Problem system, made in functional programming Javascript wi
 
 The Travelling Salesman Problem also known as TSP is an NP-hard problem in combinatorial optimization.  
 Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all go to every city in
-the least amount of time/distance.
+the least amount of time/distance.  
 The optimization solution is the one where a salesman goes through all the cities with the least distance or/and time.
 
 In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to
@@ -39,13 +39,13 @@ Step order:
 
 4. Repair all individuals which pass through a city more than one time.
 
-5. Calculate the score of all individuals.
-
-6. Show the best score among all the population. The score is calculated by the addition of all values of all cities.
+5. Calculate the score of all individuals. The score is calculated by the addition of all values of all cities.
    All individuals have a different score because the calculation is limited by a max distance. If the max distance is
-   greater than the sum of all cities, all individuals would have the same score. 
+   greater than the sum of all cities, all individuals would have the same score.
 
-8. Reiterates all this steps N times with the new mutated population.
+6. Show the best score among all the population.
+
+7. Reiterates all the previous steps N times with the new mutated population.
 
 ## Installation
 
