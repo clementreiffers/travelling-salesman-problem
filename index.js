@@ -30,7 +30,7 @@ console.log('All Cities : \n', map, '\n');
 
 console.log('Best result 1st iteration :', showBestResultFirstIteration, '\n');
 console.log(
-  'Best result ' + MAX_ITERATIONS + ' iterations',
+  'Best result after ' + MAX_ITERATIONS + ' iterations',
   showBestResultLastIteration,
   '\n'
 );
