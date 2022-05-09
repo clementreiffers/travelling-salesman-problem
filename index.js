@@ -3,10 +3,10 @@ import {createPop} from './App/Genetics/population.js';
 import {createMap} from './App/Genetics/map.js';
 import nextGeneration from './App/Genetics/next-gen.js';
 
-const MAX_CITIES = 100;
-const MAX_POPULATION = 5;
+const MAX_CITIES = 50;
+const MAX_POPULATION = 10;
 const MAX_DISTANCE = 500;
-const numberOfIteration = 100;
+const MAX_ITERATIONS = 100;
 
 const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
@@ -16,14 +16,16 @@ const doCyle = () => {
   return population;
 };
 
-const calculateTsp = R.times(doCyle, numberOfIteration);
+const calculateTsp = R.times(doCyle, MAX_ITERATIONS);
 
 const showBestResultFirstIteration = R.head(R.head(calculateTsp));
 
 const showBestResultLastIteration = R.head(R.last(calculateTsp));
 
+console.log('all Cities : \n', map);
+
 console.log('Best result 1st iteration :', showBestResultFirstIteration);
 console.log(
-  'Best result ' + numberOfIteration + ' iterations',
+  'Best result ' + MAX_ITERATIONS + ' iterations',
   showBestResultLastIteration
 );
