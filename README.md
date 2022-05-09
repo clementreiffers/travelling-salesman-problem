@@ -149,7 +149,7 @@ Best result 1st iteration : {
   ],
   score: 649
 }
-Best result 100 iterations {
+Best result after 100 iterations {
   path: [
      8, 46, 25,  7, 14, 38,  0, 40, 37, 44, 19,
     30, 22,  3, 36, 43,  6, 45, 28, 23, 41, 47,

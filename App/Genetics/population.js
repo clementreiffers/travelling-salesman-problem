@@ -18,11 +18,9 @@ const appendIndivToPopulation_ = (population) => (indiv) =>
 const createIndivFromPath = R.applySpec({path: R.identity});
 
 const createPop = (maxPop) => (maxCity) =>
-  R.times(appendRandomIndivToPopulation(maxCity)([]), maxPop);
+  R.times(appendRandomIndivToPopulation_(maxCity)([]), maxPop);
 
-const appendRandomIndivToPopulation = (maxCity) => (population) => () =>
+const appendRandomIndivToPopulation_ = (maxCity) => (population) => () =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
 
-const createPopulationFromListOfPath = R.map(createIndivFromPath);
-
-export {createPop, createPopulationFromListOfPath};
+export {createPop};
