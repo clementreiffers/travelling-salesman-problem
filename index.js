@@ -5,7 +5,11 @@ import nextGeneration from './App/Genetics/next-gen.js';
 
 /*
 below, 4 values you can change to test the code
-it's only hyperparameters
+it's only hyper parameters:
+- The number of city
+- The population size
+- The max distance calculated
+- the number of iteration
  */
 
 const MAX_CITIES = 50;
@@ -23,21 +27,13 @@ const changePopulation = () => {
 
 const repeatNextGeneration = R.times(changePopulation, MAX_ITERATIONS);
 
-const getBestResultFirstIteration = R.head(R.head(repeatNextGeneration));
-
-const getBestResultLastIteration = R.head(R.last(repeatNextGeneration));
-
-console.log(
-  '-----------------------------------------------------------------'
+const getResults = R.pipe(
+  R.applySpec({
+    firstIteration: R.head,
+    lastIteration: R.last
+  }),
+  R.map(R.head)
 );
+
 console.log('All Cities : \n', map);
-
-console.log('Best result 1st iteration :', getBestResultFirstIteration);
-console.log(
-  `Best result after ${MAX_ITERATIONS} iterations`,
-  getBestResultLastIteration
-);
-
-console.log(
-  '-----------------------------------------------------------------'
-);
+console.log(getResults(repeatNextGeneration));
