@@ -27,10 +27,17 @@ const getBestResultFirstIteration = R.head(R.head(repeatNextGeneration));
 
 const getBestResultLastIteration = R.head(R.last(repeatNextGeneration));
 
-console.log('all Cities : \n', map);
+console.log(
+  '-----------------------------------------------------------------'
+);
+console.log('All Cities : \n', map);
 
 console.log('Best result 1st iteration :', getBestResultFirstIteration);
 console.log(
   `Best result after ${MAX_ITERATIONS} iterations`,
   getBestResultLastIteration
+);
+
+console.log(
+  '-----------------------------------------------------------------'
 );

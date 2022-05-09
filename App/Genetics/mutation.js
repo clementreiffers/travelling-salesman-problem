@@ -3,14 +3,18 @@ import {getRandomIndex} from './common-functions.js';
 
 // Mutation :
 
-const mutateProbability = 1 / 5; // 0.2 mutation percent possibility
+const mutateProbability = 1 / 5; // 0.2 mutation percent probability
 
-const shouldMutate = R.pipe(Math.random, R.lt(1 - mutateProbability));
+const shouldMutate_ = R.pipe(Math.random, R.lt(1 - mutateProbability));
 
-const mutate = R.converge(R.move, [getRandomIndex, getRandomIndex, R.identity]);
+const mutate_ = R.converge(R.move, [
+  getRandomIndex,
+  getRandomIndex,
+  R.identity
+]);
 
-const tryMutate = R.when(shouldMutate, mutate);
+const tryMutate_ = R.when(shouldMutate_, mutate_);
 
-const mutatePopulation = (population) => R.map(tryMutate, population);
+const mutatePopulation = (population) => R.map(tryMutate_, population);
 
 export {mutatePopulation};
