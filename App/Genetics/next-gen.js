@@ -6,13 +6,13 @@ import {getScoreFromPopulation, sortListByScores} from './scores.js';
 
 const nextGeneration = (map) => (maxDistance) =>
   R.pipe(
-    R.pluck('order'),
+    R.pluck('path'),
     mutatePopulation,
     crossOverPopulation,
     repairPopulation,
     getScoreFromPopulation(map, maxDistance),
     sortListByScores(map),
-    R.reverse
+    R.reverse // To have the best scores on the top of the list
   );
 
 export default nextGeneration;

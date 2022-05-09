@@ -7,25 +7,26 @@ const crossoverProbability = 1;
 
 const percentParentsDeletion = 4 / 10;
 
-const shouldCrossOver = (proba) => R.pipe(Math.random, R.lt(1 - proba));
+const shouldCrossOver_ = (proba) => R.pipe(Math.random, R.lt(1 - proba));
 
-const doCrossOver = (reference, target, index) =>
+const computeCrossover_ = (reference, target, index) =>
   R.update(index, R.nth(index, reference), target);
 
-const crossOverThis = (ref) => (target) =>
-  doCrossOver(ref, target, getRandomIndex(target));
+const crossOverThis_ = (ref) => (target) =>
+  computeCrossover_(ref, target, getRandomIndex(target));
 
-const _crossOver = (proba) => (reference, target) =>
-  R.when(shouldCrossOver(proba), crossOverThis(reference))(target);
+const crossOver_ = (proba) => (reference, target) =>
+  R.when(shouldCrossOver_(proba), crossOverThis_(reference))(target);
 
-const magicMapper = (acc, value) => [
+// Map two elements of the array to create an offspring.
+const magicMapperCooking_ = (acc, value) => [
   value,
-  _crossOver(crossoverProbability)(acc, value)
+  crossOver_(crossoverProbability)(acc, value)
 ];
 
-const createOffsprings = (population) =>
+const createOffsprings_ = (population) =>
   R.pipe(
-    R.converge(R.mapAccum(magicMapper), [R.last, R.identity]),
+    R.converge(R.mapAccum(magicMapperCooking_), [R.last, R.identity]),
     R.last
   )(population);
 
@@ -34,7 +35,7 @@ const crossOverPopulation = (population) =>
     R.slice(
       0,
       Math.ceil(population.length * percentParentsDeletion),
-      createOffsprings(population)
+      createOffsprings_(population)
     )
   )(
     R.slice(
