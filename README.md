@@ -13,10 +13,12 @@ Travelling Salesman Problem system, made in functional programming Javascript wi
 ### Travelling Salesman Problem
 
 The Travelling Salesman Problem also known as TSP is an NP-hard problem in combinatorial optimization.  
-Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all go to every city in the least amount of time/distance.
-The optimization solution is the one where a salesman goes through all the cities with the least distance or/and time.  
+Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all go to every city in
+the least amount of time/distance.
+The optimization solution is the one where a salesman goes through all the cities with the least distance or/and time.
 
-In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to another take more or less time than other depending on the distance.
+In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to
+another take more or less time than other depending on the distance.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/59691442/165635831-5bfc72b5-0dd3-4a9f-afb0-b5ffd402ee88.png" alt="tspExampleImage" style="height:400px"/>
@@ -24,29 +26,33 @@ In the image below you can see a representation of the tsp problem with cities n
 
 ### App description/implementation
 
-To implement the TSP problem we use genetic algorithm.  
+To implement the travelling salesman problem we use genetic algorithm.
 
 Step order:
 
-1. Generate a population where very salesman (individual) has a list of city he goes through.
+1. Generate a population where every salesman (individual) has a list of city he goes through.
 
-2. Mutate the population (20% chance of happening on every individual)
+2. Mutate the population (20% chance of happening on every individual).
 
-3. Crossover the population to create 40% of new individuals that will replace 40% of the old one. An offspring inherits 
-all cities from its first parent and a chance of 20% to inherits a city from its second parent).
+3. Crossover the population to create 40% of new individuals that will replace 40% of the old one. An offspring inherits
+   all cities from its first parent and a chance of 20% to inherits a city from its second parent.
 
-4. Repair the population, repair the individuals that pass to a city more than one time.
+4. Repair all individuals which pass through a city more than one time.
 
-5. Display best result of population
+5. Calculate the score of all individuals.
 
-6. Iterate a new time from step 2.
+6. Show the best score among all the population. The score is calculated by the addition of all values of all cities.
+   All individuals have a different score because the calculation is limited by a max distance. If the max distance is
+   greater than the sum of all cities, all individuals would have the same score. 
+
+8. Reiterates all this steps N times with the new mutated population.
 
 ## Installation
 
 To run the app, you need to install node:  
 <https://nodejs.org/en/download/>
 
-Once installed, with your terminal go to the folder to the root of the project and run the following commande:  
+Once installed, with your terminal go to the folder to the root of the project and run the following commande:
 
 If you're using npm:
 
@@ -105,7 +111,7 @@ Last iteration (100) :  {
 
 The Source code is at the root folder and contains the TSP.  
 The gulpfile is an auto-run script to run the TSP.  
-The unit test scripts are a set of scripts to verify the good behaviour of some functions.  
+The unit test scripts are a set of scripts to verify the good behaviour of some functions.
 
 ## Developers tools
 
@@ -113,7 +119,7 @@ The project is set with some tools like auto run (gulp), unit test (chai, mocha)
 
 ### Auto run project
 
-The project has a gulpfile to autorun the script while prorgramming. To install gulp type the following command:
+The project has a gulpfile to autorun the script while programming. To install gulp type the following command:
 
 ```terminal
 npm install --global gulp-cli
@@ -154,7 +160,7 @@ Take note that GitHub verify the correct work of the tests.
 
 ### Code format test
 
-You can test the format code of the project by typing the following command:  
+You can test the format code of the project by typing the following command:
 
 ```terminal
 npm run code-style
@@ -167,7 +173,7 @@ yarn run code-style
 ```
 
 Warning:  
-*To easily achieve the code format test, you should use prettier for xo codeformatting that is already set with some 
+*To easily achieve the code format test, you should use prettier for xo codeformatting that is already set with some
 parameters in the project*
 
 ## GitActions
@@ -194,33 +200,33 @@ If one of those test failed a mail is sent to the person who tried to merge its 
 ## Documentations
 
 <https://en.wikipedia.org/wiki/Travelling_salesman_problem>  
-<https://www.youtube.com/watch?v=ncj_hBfRt-Y>  
+<https://www.youtube.com/watch?v=ncj_hBfRt-Y>
 
 ## Libraries
 
 Node and npm (runtime environment and software packaging system):  
-<https://nodejs.org/>  
+<https://nodejs.org/>
 
 Yarn (software packaging system):  
-<https://classic.yarnpkg.com/lang/en>  
+<https://classic.yarnpkg.com/lang/en>
 
 Ramda (functional programming library in JS):  
-<https://ramdajs.com>  
+<https://ramdajs.com>
 
 Gulp (auto script starter):  
-<https://gulpjs.com>  
+<https://gulpjs.com>
 
 Chai (assertion library):  
-<https://www.chaijs.com/>  
+<https://www.chaijs.com/>
 
 Mocha (test framework):  
-<https://mochajs.org>  
+<https://mochajs.org>
 
 Xo (code formater wraper):  
-<https://github.com/xojs/xo>  
+<https://github.com/xojs/xo>
 
 Prettier (code formatter):  
-<https://prettier.io>  
+<https://prettier.io>
 
 Editor config (normalize the IDE for the project):  
 <https://EditorConfig.org>
