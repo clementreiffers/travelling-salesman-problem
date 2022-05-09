@@ -4,7 +4,7 @@ import {createMap} from './App/Genetics/map.js';
 import nextGeneration from './App/Genetics/next-gen.js';
 
 /*
-below, 4 values you can change to test the code
+Below, 4 values you can change to test the code
 it's only hyper parameters:
 - The number of city
 - The population size
