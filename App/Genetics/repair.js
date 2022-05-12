@@ -1,7 +1,5 @@
 import * as R from 'ramda';
 
-// Repair :
-
 const listCities_ = (individual) => R.times(R.identity, individual.length);
 
 const getMissingCity_ = (individual) =>

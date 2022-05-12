@@ -1,6 +1,3 @@
-/*
- * GENERATION OF POPULATION
- */
 import * as R from 'ramda';
 import {shuffleList} from './common-functions.js';
 
@@ -15,10 +12,10 @@ const createRandomIndiv_ = (maxCity) =>
 const appendIndivToPopulation_ = (population) => (indiv) =>
   R.nth(0, R.append(indiv, population));
 
-const createPop = (maxPop) => (maxCity) =>
-  R.times(appendRandomIndivToPopulation_(maxCity)([]), maxPop);
-
 const appendRandomIndivToPopulation_ = (maxCity) => (population) => () =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
+
+const createPop = (maxPop) => (maxCity) =>
+  R.times(appendRandomIndivToPopulation_(maxCity)([]), maxPop);
 
 export {createPop};

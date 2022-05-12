@@ -3,9 +3,9 @@ import {getRandomIndex} from './common-functions.js';
 
 // Mutation :
 
-const mutateProbability = 1 / 5; // 0.2 mutation percent probability
+const mutateProbability_ = 1 / 5; // 0.2 mutation percent probability
 
-const shouldMutate_ = R.pipe(Math.random, R.lt(1 - mutateProbability));
+const shouldMutate_ = R.pipe(Math.random, R.lt(1 - mutateProbability_));
 
 const mutate_ = R.converge(R.move, [
   getRandomIndex,
