@@ -278,3 +278,5 @@ the staging to main branch.
 ### Other
 
 - [GitHub Badges](https://github.com/aleen42/badges)
+
+[![GitHub contributors](https://contrib.rocks/image?repo=clementreiffers/travelling-salesman-problem&max=2)](https://github.com/clementreiffers/travelling-salesman-problem/graphs/contributors)
