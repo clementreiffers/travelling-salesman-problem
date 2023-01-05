@@ -100,33 +100,15 @@ To run the app, you need to install [NodeJS](https://nodejs.org/en/download/)
 
 Once installed, with your terminal go to the folder to the root of the project and run the following commande:
 
-If you're using npm:
+If you're using npm: `npm install`
 
-```terminal
-npm install
-```
-
-or if you're using Yarn:
-
-```terminal
-yarn install
-```
+Or if you're using Yarn: `yarn install`
 
 It will install all the needed libraries to start the project.
 
 ## Start the app
 
-After just start the program by typing:
-
-```terminal
-npm start
-```
-
-or
-
-```terminal
-yarn start
-```
+After just start the program by typing: `npm start` or `yarn start`
 
 ## Output example
 
