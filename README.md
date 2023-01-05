@@ -6,6 +6,8 @@
 ![https://mochajs.org](docs/mocha.svg)
 [![Node.js CI test and code-style](https://github.com/clementreiffers/travelling_salesman_problem/actions/workflows/node.js.yml/badge.svg)](https://github.com/clementreiffers/travelling_salesman_problem/actions/workflows/node.js.yml)
 
+Travelling Salesman Problem system, made in functional programming Javascript with Ramda.
+
 ## Overview
 1. [Description](#description)
    1. [Travelling Salesman Problem](#travelling-salesman-problem)
@@ -26,8 +28,6 @@
     2. [Libraries](#libraries)
 
 ## Description
-
-Travelling Salesman Problem system, made in functional programming Javascript with Ramda.
 
 ### Travelling Salesman Problem
 
