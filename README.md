@@ -1,10 +1,29 @@
 # Travelling Salesman Problem
 
-<p align="center">
-  <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="javascriptLogo" style="height:50px;"/>
-  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="nodejsLogo" style="height:50px;"/>
-  <img src="https://ramdajs.com/ramdaFilled_200x235.png" alt="ramdajsLogo" style="background-color:#c5d0da; height:50px;"/>
-</p>  
+![https://developer.mozilla.org/fr/docs/Web/JavaScript](docs/js.svg)
+![https://nodejs.dev/en/](docs/node.svg)
+![https://gulpjs.com](docs/gulp.svg)
+![https://mochajs.org](docs/mocha.svg)
+[![Node.js CI test and code-style](https://github.com/clementreiffers/travelling_salesman_problem/actions/workflows/node.js.yml/badge.svg)](https://github.com/clementreiffers/travelling_salesman_problem/actions/workflows/node.js.yml)
+
+## Overview
+1. [Description](#description)
+   1. [Travelling Salesman Problem](#travelling-salesman-problem)
+   2. [App Description/Implementation](#app-descriptionimplementation)
+2. [Installation](#installation)
+3. [Start the App](#start-the-app)
+4. [Output Example](#output-example)
+5. [Project Architecture](#project-architecture)
+6. [Developer Tools](#developers-tools)
+   1. [Auto Run Project](#auto-run-project)
+   2. [Unit Test](#unit-test)
+   3. [Code Format Test](#code-format-test)
+7. [Git Actions](#gitactions)
+8. [Authors](#authors)
+9. [Special Thanks](#special-thanks)
+10. [Links](#links)
+    1. [Documentations](#documentations)
+    2. [Libraries](#libraries)
 
 ## Description
 
@@ -13,16 +32,44 @@ Travelling Salesman Problem system, made in functional programming Javascript wi
 ### Travelling Salesman Problem
 
 The Travelling Salesman Problem also known as TSP is an NP-hard problem in combinatorial optimization.  
-Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all go to every city in
-the least amount of time/distance.  
-The optimization solution is the one where a salesman goes through all the cities with the least distance or/and time.
+Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all 
+go to every city in the least amount of time/distance.  
+The optimization solution is the one where a salesman goes through all the cities with the least 
+distance or/and time.
 
-In the image below you can see a representation of the tsp problem with cities named A, B, C, D. Going from a city to
-another take more or less time than other depending on the distance.
+In the schema below you can see an example with some cities in Europe (Paris, Marseille, Berlin, Hamburg).
+Going from a city to another take more or less time than other depending on the distance.
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/59691442/165635831-5bfc72b5-0dd3-4a9f-afb0-b5ffd402ee88.png" alt="tspExampleImage" style="height:400px"/>
-</p>
+The Travelling Salesman Problem can find the most optimized path to join all cities.
+
+
+```mermaid
+flowchart LR
+subgraph France
+    Paris --- |775,2 km| Marseille
+end
+
+subgraph Germany
+    Hamburg --- |289,4 km| Berlin
+end
+
+Paris --- |1054,3 km| Berlin
+Paris --- |913,4 km| Hamburg
+Marseille --- |1542,2 km| Berlin
+Marseille --- |1460,5 km| Hamburg
+
+style Paris fill:#002654,color:white,stroke:white
+style Marseille fill:#ED2939,color:white,stroke:white
+style Hamburg fill:black,color:white,stroke:white
+style Berlin fill:#FFCC00,color:black,stroke:white
+style France fill:black,color:white,stroke:black
+style Germany fill:black,color:white,stroke:black
+
+linkStyle 0 stroke:white,stroke-width:5
+linkStyle 1 stroke:#DD0000,stroke-width:5
+
+
+```
 
 ### App description/implementation
 
@@ -49,8 +96,7 @@ Step order:
 
 ## Installation
 
-To run the app, you need to install node:  
-<https://nodejs.org/en/download/>
+To run the app, you need to install [NodeJS](https://nodejs.org/en/download/)
 
 Once installed, with your terminal go to the folder to the root of the project and run the following commande:
 
@@ -176,66 +222,35 @@ The unit test scripts are a set of scripts to verify the good behaviour of some 
 
 ## Developers tools
 
-The project is set with some tools like auto run (gulp), unit test (chai, mocha), code formatter (xo/prettier).
+The project is set with some tools like auto run (gulp), unit test ([Chai](https://www.chaijs.com/), [Mocha](https://mochajs.org)), code formatter ([Xo](https://github.com/xojs/xo)/[Prettier](https://prettier.io)).
 
 ### Auto run project
 
-The project has a gulpfile to autorun the script while programming. To install gulp type the following command:
+The project has a gulpfile to autorun the script while programming. 
+To install gulp type the following command:
+`npm install --global gulp-cli` or `yarn add gulp-cli`
 
-```terminal
-npm install --global gulp-cli
-```
-
-or
-
-```terminal
-yarn add gulp-cli
-```
-
-To start it types in the root folder the command:
-
-```terminal
-gulp
-```
+To start it types in the root folder the command: `gulp`
 
 Each time a js script is modified and save, it will run the index.js file.  
 The gulp file is written in js.
 
 ### Unit test
 
-To run the unit test scripts, you can type the command:
+To run the unit test scripts, you can type the command: `npm test` or `yarn test`
 
-```terminal
-npm test
-```
-
-or
-
-```terminal
-yarn test
-```
-
-It will start mocha that will look for test scripts.  
-The test scripts are written in js with Chai.
+It will start [Mocha](https://mochajs.org) that will look for test scripts.  
+The test scripts are written in js with [Chai](https://www.chaijs.com/).
 Take note that GitHub verify the correct work of the tests.
 
 ### Code format test
 
 You can test the format code of the project by typing the following command:
+`npm run code-style` or `yarn run code-style`
 
-```terminal
-npm run code-style
-```
-
-or
-
-```terminal
-yarn run code-style
-```
-
-Warning:  
-*To easily achieve the code format test, you should use prettier for xo codeformatting that is already set with some
-parameters in the project*
+>**Warning**
+>To easily achieve the code format test, you should use [Prettier](https://prettier.io) for [Xo (code formater wraper)](https://github.com/xojs/xo) code-formatting that is already set with some
+parameters in the project
 
 ## GitActions
 
@@ -243,51 +258,41 @@ parameters in the project*
 
 The project is set with GitHub Actions that will test:
 
-- code format and functions not used (xo)
+- code format and functions not used ([Xo](https://github.com/xojs/xo))
 
-- unit test scripts (chai and mocha)
+- unit test scripts ([Chai](https://www.chaijs.com/) and [Mocha](https://mochajs.org))
 
-If one of those test failed a mail is sent to the person who tried to merge its code from the staging to main branch.
+If one of those test failed a mail is sent to the person who tried to merge its code from 
+the staging to main branch.
 
 ## Authors
 
-- Quentin MOREL (<https://github.com/Im-Rises/>)
-- Clément REIFFERS (<https://github.com/clementreiffers>)
+- [Clément Reiffers](https://github.com/clementreiffers)
+- [Quentin Morel](https://github.com/Im-Rises)
 
 ## Special thanks
 
-- Maxime ROBIN (<https://github.com/Waxo>)
+- [Maxime Robin](https://github.com/Waxo)
 
-## Documentations
+## Links
 
-<https://en.wikipedia.org/wiki/Travelling_salesman_problem>  
-<https://www.youtube.com/watch?v=ncj_hBfRt-Y>
+### Documentations
 
-## Libraries
+- [What is Travelling Salesman Problem?](https://en.wikipedia.org/wiki/Travelling_salesman_problem)  
+- [Understand what is a genetic algorithm](https://www.youtube.com/watch?v=ncj_hBfRt-Y>)
 
-Node and npm (runtime environment and software packaging system):  
-<https://nodejs.org/>
+### Libraries
 
-Yarn (software packaging system):  
-<https://classic.yarnpkg.com/lang/en>
+- [Node and npm (runtime environment and software packaging system)](https://nodejs.org/)
+- [Yarn (software packaging system)](https://classic.yarnpkg.com/lang/en)
+- [Ramda (functional programming library in JS)](https://ramdajs.com)
+- [Gulp (auto script starter)](https://gulpjs.com)
+- [Chai (assertion library)](https://www.chaijs.com/)
+- [Mocha (test framework)](https://mochajs.org)
+- [Xo (code formater wraper)](https://github.com/xojs/xo)
+- [Prettier (code formatter)](https://prettier.io)
+- [Editor config (normalize the IDE for the project)](https://EditorConfig.org)
+- [Mermaid (Graph shown in Readme)](https://mermaid.js.org)
+### Other
 
-Ramda (functional programming library in JS):  
-<https://ramdajs.com>
-
-Gulp (auto script starter):  
-<https://gulpjs.com>
-
-Chai (assertion library):  
-<https://www.chaijs.com/>
-
-Mocha (test framework):  
-<https://mochajs.org>
-
-Xo (code formater wraper):  
-<https://github.com/xojs/xo>
-
-Prettier (code formatter):  
-<https://prettier.io>
-
-Editor config (normalize the IDE for the project):  
-<https://EditorConfig.org>
+- [GitHub Badges](https://github.com/aleen42/badges)
