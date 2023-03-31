@@ -15,11 +15,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npm run code-style
-    - run: npm run test
+      - name: ✨ Checkout ✨
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Setting up node ⚙️
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: ⬇️ Installing packages ⬇️
+        run: npm install
+
+      - name: 🔎 Verifying code style 🔎
+        run: npm run code-style
+
+      - name: ⚡ Testing ⚡
+        run: npm run test
+
+      - name: ⬆️ Uploading to NPM ⬆️
+        run: |
+          git config --global user.email "reiffersclement@gmail.com"
+          git config --global user.name "clementreiffers"
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

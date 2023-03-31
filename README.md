@@ -9,17 +9,18 @@
 Travelling Salesman Problem system, made in functional programming Javascript with Ramda.
 
 ## Overview
+
 1. [Description](#description)
-   1. [Travelling Salesman Problem](#travelling-salesman-problem)
-   2. [App Description/Implementation](#app-descriptionimplementation)
+    1. [Travelling Salesman Problem](#travelling-salesman-problem)
+    2. [App Description/Implementation](#app-descriptionimplementation)
 2. [Installation](#installation)
 3. [Start the App](#start-the-app)
 4. [Output Example](#output-example)
 5. [Project Architecture](#project-architecture)
 6. [Developer Tools](#developers-tools)
-   1. [Auto Run Project](#auto-run-project)
-   2. [Unit Test](#unit-test)
-   3. [Code Format Test](#code-format-test)
+    1. [Auto Run Project](#auto-run-project)
+    2. [Unit Test](#unit-test)
+    3. [Code Format Test](#code-format-test)
 7. [Git Actions](#gitactions)
 8. [Authors](#authors)
 9. [Special Thanks](#special-thanks)
@@ -32,16 +33,15 @@ Travelling Salesman Problem system, made in functional programming Javascript wi
 ### Travelling Salesman Problem
 
 The Travelling Salesman Problem also known as TSP is an NP-hard problem in combinatorial optimization.  
-Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all 
+Imagine a set of city disposed on a map, you have a set of salesman (population) and they must all
 go to every city in the least amount of time/distance.  
-The optimization solution is the one where a salesman goes through all the cities with the least 
+The optimization solution is the one where a salesman goes through all the cities with the least
 distance or/and time.
 
 In the schema below you can see an example with some cities in Europe (Paris, Marseille, Berlin, Hamburg).
 Going from a city to another take more or less time than other depending on the distance.
 
 The Travelling Salesman Problem can find the most optimized path to join all cities.
-
 
 ```mermaid
 flowchart LR
@@ -204,17 +204,19 @@ The unit test scripts are a set of scripts to verify the good behaviour of some 
 
 ## Developers tools
 
-The project is set with some tools like auto run (gulp), unit test ([Chai](https://www.chaijs.com/), [Mocha](https://mochajs.org)), code formatter ([Xo](https://github.com/xojs/xo)/[Prettier](https://prettier.io)).
+The project is set with some tools like auto run (gulp), unit
+test ([Chai](https://www.chaijs.com/), [Mocha](https://mochajs.org)), code
+formatter ([Xo](https://github.com/xojs/xo)/[Prettier](https://prettier.io)).
 
 ### Auto run project
 
-The project has a gulpfile to autorun the script while programming. 
+The project has a gulpfile to autorun the script while programming.
 To install gulp type the following command:
 `npm install --global gulp-cli` or `yarn add gulp-cli`
 
 To start it types in the root folder the command: `gulp`
 
-Each time a js script is modified and save, it will run the index.js file.  
+Each time a js script is modified and save, it will run the example.js file.  
 The gulp file is written in js.
 
 ### Unit test
@@ -230,9 +232,10 @@ Take note that GitHub verify the correct work of the tests.
 You can test the format code of the project by typing the following command:
 `npm run code-style` or `yarn run code-style`
 
->**Warning**
->To easily achieve the code format test, you should use [Prettier](https://prettier.io) for [Xo (code formater wraper)](https://github.com/xojs/xo) code-formatting that is already set with some
-parameters in the project
+> **Warning**
+> To easily achieve the code format test, you should use [Prettier](https://prettier.io)
+> for [Xo (code formater wraper)](https://github.com/xojs/xo) code-formatting that is already set with some
+> parameters in the project
 
 ## GitActions
 
@@ -244,7 +247,7 @@ The project is set with GitHub Actions that will test:
 
 - unit test scripts ([Chai](https://www.chaijs.com/) and [Mocha](https://mochajs.org))
 
-If one of those test failed a mail is sent to the person who tried to merge its code from 
+If one of those test failed a mail is sent to the person who tried to merge its code from
 the staging to main branch.
 
 ## Authors
@@ -260,7 +263,7 @@ the staging to main branch.
 
 ### Documentations
 
-- [What is Travelling Salesman Problem?](https://en.wikipedia.org/wiki/Travelling_salesman_problem)  
+- [What is Travelling Salesman Problem?](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
 - [Understand what is a genetic algorithm](https://www.youtube.com/watch?v=ncj_hBfRt-Y>)
 
 ### Libraries
@@ -275,6 +278,7 @@ the staging to main branch.
 - [Prettier (code formatter)](https://prettier.io)
 - [Editor config (normalize the IDE for the project)](https://EditorConfig.org)
 - [Mermaid (Graph shown in Readme)](https://mermaid.js.org)
+
 ### Other
 
 - [GitHub Badges](https://github.com/aleen42/badges)

@@ -1,30 +1,46 @@
 {
-  "name": "travelling_salesman_problem",
+  "name": "genetic-travelling-salesman-problem",
   "version": "1.0.0",
-  "description": "TSP solver with genetic algorithm made in Javascript with Ramda.",
-  "main": "index.js",
+  "description": "travelling salesman problem solver with genetic algorithm made in Functional Javascript with Ramda.",
+  "main": "example.js",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/clementreiffers/TSP_system.git"
+    "url": "git+https://github.com/clementreiffers/travelling-salesman-problem.git"
   },
   "keywords": [
     "Javascript",
     "Ramda",
     "TSP",
     "TSP-problem",
-    "TSP-solver"
+    "TSP-solver",
+    "NodeJS",
+    "travelling-salesman-problem",
+    "genetic-travelling-salesman-problem",
+    "travelling",
+    "salesman",
+    "problem",
+    "genetic",
+    "clementreiffers",
+    "Clement",
+    "Reiffers",
+    "Im-Rises",
+    "Im",
+    "Rises",
+    "Quentin",
+    "Morel",
+    "functional"
   ],
   "author": "Quentin MOREL, Clément REIFFERS",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/clementreiffers/TSP_system/issues"
+    "url": "https://github.com/clementreiffers/travelling-salesman-problem/issues"
   },
-  "homepage": "https://github.com/clementreiffers/TSP_system#readme",
+  "homepage": "https://github.com/clementreiffers/travelling-salesman-problem#readme",
   "scripts": {
-    "start": "node index.js",
-    "test":"mocha --recursive",
-    "code-style":"xo"
+    "start": "node example.js",
+    "test": "mocha --recursive",
+    "code-style": "xo"
   },
   "dependencies": {
     "ramda": "^0.28.0"

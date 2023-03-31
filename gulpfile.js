@@ -10,7 +10,7 @@ const watcher = async () => {
 };
 
 const start = async () => {
-  myProcess = spawn('node', ['index.js'], {
+  myProcess = spawn('node', ['example.js'], {
     stdio: 'inherit'
   });
 };
