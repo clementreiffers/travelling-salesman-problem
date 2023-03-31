@@ -37,7 +37,5 @@ jobs:
         run: |
           git config --global user.email "reiffersclement@gmail.com"
           git config --global user.name "clementreiffers"
-          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+          npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
           npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
