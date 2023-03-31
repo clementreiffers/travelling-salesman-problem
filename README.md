@@ -43,6 +43,10 @@ Going from a city to another take more or less time than other depending on the 
 
 The Travelling Salesman Problem can find the most optimized path to join all cities.
 
+> **WARNING**
+> This code below shows how it works, it will be well printed by seeing this 
+> [GitHub Repository](https://github.com/clementreiffers/travelling-salesman-problem)
+
 ```mermaid
 flowchart LR
 subgraph France
