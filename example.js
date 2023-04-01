@@ -15,31 +15,31 @@ it's only hyper parameters:
  */
 
 const PARAMETERS = {
-  maxCities: 50,
-  maxPopulation: 10,
-  maxDistance: undefined,
-  maxIterations: 100,
-  width: 500,
-  height: 500
+	maxCities: 50,
+	maxPopulation: 10,
+	maxDistance: undefined,
+	maxIterations: 100,
+	width: 500,
+	height: 500,
 };
 
 const map = createMap(PARAMETERS);
 let population = createPop(PARAMETERS);
 
 const changePopulation = () => {
-  population = nextGeneration(map, PARAMETERS, population);
-  return population;
+	population = nextGeneration(map, PARAMETERS, population);
+	return population;
 };
 
 const repeatNextGeneration = ({maxIterations}) =>
-  R.times(changePopulation, maxIterations);
+	R.times(changePopulation, maxIterations);
 
 const getResults = R.pipe(
-  R.applySpec({
-    firstIteration: R.head,
-    lastIteration: R.last
-  }),
-  R.map(R.head)
+	R.applySpec({
+		firstIteration: R.head,
+		lastIteration: R.last,
+	}),
+	R.map(R.head),
 );
 
 console.log('All Cities : \n', map);
