@@ -17,7 +17,16 @@ const MAX_POPULATION = 10;
 const MAX_DISTANCE = undefined;
 const MAX_ITERATIONS = 100;
 
-const map = createMap(MAX_CITIES, 500, 500);
+const PARAMETERS = {
+  maxCities: 50,
+  maxPopulation: 10,
+  maxDistance: undefined,
+  maxIterations: 100,
+  width: 500,
+  height: 500
+};
+
+const map = createMap(PARAMETERS);
 let population = createPop(MAX_POPULATION, MAX_CITIES);
 
 const changePopulation = () => {
