@@ -17,7 +17,7 @@ const MAX_POPULATION = 10;
 const MAX_DISTANCE = 500;
 const MAX_ITERATIONS = 100;
 
-const map = createMap(MAX_CITIES);
+const map = createMap(MAX_CITIES, 500, 500);
 let population = createPop(MAX_POPULATION, MAX_CITIES);
 
 const changePopulation = () => {
