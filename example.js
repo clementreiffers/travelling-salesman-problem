@@ -14,7 +14,7 @@ it's only hyper parameters:
 
 const MAX_CITIES = 50;
 const MAX_POPULATION = 10;
-const MAX_DISTANCE = 500;
+const MAX_DISTANCE = undefined;
 const MAX_ITERATIONS = 100;
 
 const map = createMap(MAX_CITIES, 500, 500);

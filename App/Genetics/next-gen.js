@@ -11,7 +11,7 @@ const nextGeneration = (map, maxDistance, population) =>
     crossOverPopulation,
     repairPopulation,
     getScoreFromPopulation(map, maxDistance),
-    sortListByScores(map),
+    sortListByScores(maxDistance),
     R.reverse // To have the best scores on the top of the list
   )(population);
 
