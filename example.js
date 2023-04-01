@@ -6,26 +6,33 @@ import nextGeneration from './App/Genetics/next-gen.js';
 /*
 Below, 4 values you can change to test the code
 it's only hyper parameters:
-- The number of city
-- The population size
-- The max distance calculated
+- The number of city (maxCities)
+- The population size (maxPopulation)
+- The max distance calculated (maxDistance): It could be either a Number and Undefined
 - the number of iteration
+- the width of the map
+- the height of the map
  */
 
-const MAX_CITIES = 50;
-const MAX_POPULATION = 10;
-const MAX_DISTANCE = 500;
-const MAX_ITERATIONS = 100;
+const PARAMETERS = {
+  maxCities: 50,
+  maxPopulation: 10,
+  maxDistance: undefined,
+  maxIterations: 100,
+  width: 500,
+  height: 500
+};
 
-const map = createMap(MAX_CITIES);
-let population = createPop(MAX_POPULATION)(MAX_CITIES);
+const map = createMap(PARAMETERS);
+let population = createPop(PARAMETERS);
 
 const changePopulation = () => {
-  population = nextGeneration(map)(MAX_DISTANCE)(population);
+  population = nextGeneration(map, PARAMETERS, population);
   return population;
 };
 
-const repeatNextGeneration = R.times(changePopulation, MAX_ITERATIONS);
+const repeatNextGeneration = ({maxIterations}) =>
+  R.times(changePopulation, maxIterations);
 
 const getResults = R.pipe(
   R.applySpec({
@@ -36,4 +43,4 @@ const getResults = R.pipe(
 );
 
 console.log('All Cities : \n', map);
-console.log(getResults(repeatNextGeneration));
+console.log(getResults(repeatNextGeneration(PARAMETERS)));

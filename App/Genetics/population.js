@@ -15,7 +15,7 @@ const appendIndivToPopulation_ = (population) => (indiv) =>
 const appendRandomIndivToPopulation_ = (maxCity) => (population) => () =>
   appendIndivToPopulation_(population)(createRandomIndiv_(maxCity)());
 
-const createPop = (maxPop) => (maxCity) =>
-  R.times(appendRandomIndivToPopulation_(maxCity)([]), maxPop);
+const createPop = ({maxPopulation, maxCities}) =>
+  R.times(appendRandomIndivToPopulation_(maxCities)([]), maxPopulation);
 
 export {createPop};

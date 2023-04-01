@@ -18,16 +18,15 @@ const distance_ = (city1, city2) => {
   );
 };
 
-const isDistanceLessThanTheMax_ = (value, constraint) => {
-  return R.lt(value, constraint);
-};
+const isDistanceLessThanTheMax_ = (value, maxDistance) =>
+  R.lt(value, maxDistance);
 
 const affiliateValues_ = (key, value) => R.over(R.lensProp(key), value);
 
-const computeScoreWithConstraint_ = (cities, constraint) =>
+const computeScoreWithMaxDistance_ = (cities, maxDistance) =>
   R.pipe(
     R.reduceWhile(
-      (acc) => isDistanceLessThanTheMax_(R.prop('distance', acc), constraint),
+      (acc) => isDistanceLessThanTheMax_(R.prop('distance', acc), maxDistance),
       (acc, x) =>
         R.pipe(
           affiliateValues_('score', R.add(R.prop('value', R.prop(x, cities)))),
@@ -48,14 +47,41 @@ const computeScoreWithConstraint_ = (cities, constraint) =>
 
 const sortPopulationWithProp_ = (prop) => R.sortBy(R.prop(prop));
 
-const getScoreFromPopulation = (cities, constraint) =>
-  R.map(
-    R.applySpec({
-      path: R.identity,
-      score: computeScoreWithConstraint_(cities, constraint)
-    })
+const setCitiesAtIndice_ = (cities) => (indice) => R.prop(indice, cities);
+
+const computeScoreWithoutMaxDistance_ = (cities) => (path) => {
+  return R.pipe(
+    R.aperture(2),
+    R.map(R.map(setCitiesAtIndice_(cities))),
+    R.map(([city1, city2]) => distance_(city1, city2)),
+    R.sum
+  )(path);
+};
+
+const isMaxDistanceIsUndefined_ = R.equals(undefined);
+
+const computeScore_ = (cities, maxDistance) =>
+  R.ifElse(
+    () => isMaxDistanceIsUndefined_(maxDistance),
+    computeScoreWithoutMaxDistance_(cities),
+    computeScoreWithMaxDistance_(cities, maxDistance)
   );
 
-const sortListByScores = () => sortPopulationWithProp_('score');
+const getScoreFromPopulation = (cities, maxDistance) =>
+  R.pipe(
+    R.map(
+      R.applySpec({
+        path: R.identity,
+        score: computeScore_(cities, maxDistance)
+      })
+    )
+  );
+
+const sortListByScores = (maxDistance) =>
+  R.ifElse(
+    () => isMaxDistanceIsUndefined_(maxDistance),
+    R.pipe(sortPopulationWithProp_('score'), R.reverse),
+    sortPopulationWithProp_('score')
+  );
 
 export {sortListByScores, getScoreFromPopulation};
