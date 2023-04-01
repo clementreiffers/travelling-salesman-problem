@@ -34,7 +34,8 @@ const changePopulation = () => {
   return population;
 };
 
-const repeatNextGeneration = R.times(changePopulation, MAX_ITERATIONS);
+const repeatNextGeneration = ({maxIterations}) =>
+  R.times(changePopulation, maxIterations);
 
 const getResults = R.pipe(
   R.applySpec({
@@ -45,4 +46,4 @@ const getResults = R.pipe(
 );
 
 console.log('All Cities : \n', map);
-console.log(getResults(repeatNextGeneration));
+console.log(getResults(repeatNextGeneration(PARAMETERS)));
