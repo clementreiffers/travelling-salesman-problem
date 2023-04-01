@@ -1,6 +1,6 @@
 {
   "name": "genetic-travelling-salesman-problem",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "travelling salesman problem solver with genetic algorithm made in Functional Javascript with Ramda.",
   "main": "example.js",
   "type": "module",
