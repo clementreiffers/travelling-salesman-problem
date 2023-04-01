@@ -30,7 +30,7 @@ const map = createMap(PARAMETERS);
 let population = createPop(PARAMETERS);
 
 const changePopulation = () => {
-  population = nextGeneration(map, MAX_DISTANCE, population);
+  population = nextGeneration(map, PARAMETERS, population);
   return population;
 };
 

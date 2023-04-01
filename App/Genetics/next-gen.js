@@ -4,7 +4,7 @@ import {crossOverPopulation} from './crossover.js';
 import {repairPopulation} from './repair.js';
 import {getScoreFromPopulation, sortListByScores} from './scores.js';
 
-const nextGeneration = (map, maxDistance, population) =>
+const nextGeneration = (map, {maxDistance}, population) =>
   R.pipe(
     R.pluck('path'),
     mutatePopulation,
