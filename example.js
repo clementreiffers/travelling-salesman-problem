@@ -21,7 +21,7 @@ const map = createMap(MAX_CITIES);
 let population = createPop(MAX_POPULATION)(MAX_CITIES);
 
 const changePopulation = () => {
-  population = nextGeneration(map)(MAX_DISTANCE)(population);
+  population = nextGeneration(map, MAX_DISTANCE, population);
   return population;
 };
 
