@@ -6,16 +6,13 @@ import nextGeneration from './App/Genetics/next-gen.js';
 /*
 Below, 4 values you can change to test the code
 it's only hyper parameters:
-- The number of city
-- The population size
-- The max distance calculated
+- The number of city (maxCities)
+- The population size (maxPopulation)
+- The max distance calculated (maxDistance): It could be either a Number and Undefined
 - the number of iteration
+- the width of the map
+- the height of the map
  */
-
-const MAX_CITIES = 50;
-const MAX_POPULATION = 10;
-const MAX_DISTANCE = undefined;
-const MAX_ITERATIONS = 100;
 
 const PARAMETERS = {
   maxCities: 50,
